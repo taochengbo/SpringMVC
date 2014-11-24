@@ -4,9 +4,10 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>success</title>
+<title>Insert title here</title>
 </head>
 <body>
-<h1>恭喜你。成功了！！！！</h1>
+	用户名：${accountmodel.username}<br/>
+	密 码：${accountmodel.password}
 </body>
 </html>
