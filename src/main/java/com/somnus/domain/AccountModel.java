@@ -2,10 +2,16 @@ package com.somnus.domain;
 
 import java.io.Serializable;
 
-public class Account implements Serializable{
+public class AccountModel implements Serializable {
+	
+	/**
+	 * 
+	 */
 	private static final long serialVersionUID = -4835224895952766346L;
 	private String username;
 	private String password;
+	
+	public AccountModel(){}
 	
 	public void setUsername(String username){
 		this.username=username;

@@ -19,12 +19,12 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.somnus.domain.Account;
+import com.somnus.domain.AccountModel;
 
 
 @Controller
 @RequestMapping(value = "/databind")
-@SessionAttributes(value = "sessionaccount")
+@SessionAttributes(value = "sessionaccountmodel")
 public class DataBindController {
 
 	@RequestMapping(value="/parambind", method = {RequestMethod.GET})
@@ -58,19 +58,19 @@ public class DataBindController {
 	@RequestMapping(value="/modelautobind", method = {RequestMethod.GET})
 	public String modelAutoBind(HttpServletRequest request, Model model){
 		
-		model.addAttribute("account", new Account());
+		model.addAttribute("accountmodel", new AccountModel());
 		return "modelautobind";
 	}
 	
 	/*@RequestMapping(value="/modelautobind", method = {RequestMethod.POST})
-	public String modelAutoBind(HttpServletRequest request, Model model, account account){
+	public String modelAutoBind(HttpServletRequest request, Model model, AccountModel accountModel){
 		
-		model.addAttribute("account", account);
+		model.addAttribute("accountmodel", accountModel);
 		return "modelautobindresult";
 	}*/
 	
 	@RequestMapping(value="/modelautobind", method = {RequestMethod.POST})
-	public String modelAutoBind(HttpServletRequest request, @ModelAttribute("account") Account account){
+	public String modelAutoBind(HttpServletRequest request, @ModelAttribute("accountmodel") AccountModel accountModel){
 		
 		return "modelautobindresult";
 	}
@@ -92,34 +92,34 @@ public class DataBindController {
     }
 	
 	//@SessionAttributes Test
-	@ModelAttribute("sessionaccount")
-	public Account initaccount(){
+	@ModelAttribute("sessionaccountmodel")
+	public AccountModel initAccountModel(){
 		
-		return new Account();
+		return new AccountModel();
 	}
 	
 	@RequestMapping(value="/usernamebind", method = {RequestMethod.GET})
-	public String userNameBind( Model model, Account account){
+	public String userNameBind( Model model, AccountModel accountModel){
 		
-		model.addAttribute("sessionaccount", new Account());
+		model.addAttribute("sessionaccountmodel", new AccountModel());
 		return "usernamebind";
 	}
 	
 	@RequestMapping(value="/usernamebind", method = {RequestMethod.POST})
-	public String userNameBindPost( @ModelAttribute("sessionaccount") Account account){
+	public String userNameBindPost( @ModelAttribute("sessionaccountmodel") AccountModel accountModel){
 		
 		//重定向到密码绑定测试
 		return "redirect:passwordbind";
 	}
 	
 	@RequestMapping(value="/passwordbind", method = {RequestMethod.GET})
-	public String passwordBind(@ModelAttribute("sessionaccount") Account account){
+	public String passwordBind(@ModelAttribute("sessionaccountmodel") AccountModel accountModel){
 		
 		return "passwordbind";
 	}
 	
 	@RequestMapping(value="/passwordbind", method = {RequestMethod.POST})
-	public String passwordBindPost(@ModelAttribute("sessionaccount") Account account, SessionStatus status){
+	public String passwordBindPost(@ModelAttribute("sessionaccountmodel") AccountModel accountModel, SessionStatus status){
 		
 		//销毁@SessionAttributes中value指定名称的数据
 		status.setComplete();
@@ -131,14 +131,14 @@ public class DataBindController {
 	@RequestMapping(value="/requestbodybind", method = {RequestMethod.GET})
     public String requestBodyBind(Model model){
 		
-		model.addAttribute("account", new Account());
+		model.addAttribute("accountmodel", new AccountModel());
         return "requestbodybind";
     }
 	
 	@RequestMapping(value="/requestbodybind", method = {RequestMethod.POST})
-    public @ResponseBody Account requestBodyBind(@RequestBody Account account){
+    public @ResponseBody AccountModel requestBodyBind(@RequestBody AccountModel accountModel){
 				
-		return account;
+		return accountModel;
     }
 		
 }
