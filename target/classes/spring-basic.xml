@@ -19,7 +19,7 @@
     </bean>
     <bean id="conversion-service" class="org.springframework.format.support.FormattingConversionServiceFactoryBean" />
     <bean id="validatemessageSource" class="org.springframework.context.support.ReloadableResourceBundleMessageSource">  
-        <property name="basename" value="classpath:validatemessages"/>  
+        <property name="basename" value="classpath:message/validatemessages"/>  
         <property name="fileEncodings" value="utf-8"/>  
         <property name="cacheSeconds" value="120"/>  
 	</bean> 
