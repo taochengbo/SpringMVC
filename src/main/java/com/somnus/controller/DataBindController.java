@@ -21,7 +21,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.somnus.domain.AccountModel;
 
-
 @Controller
 @RequestMapping(value = "/databind")
 @SessionAttributes(value = "sessionaccountmodel")
@@ -136,7 +135,8 @@ public class DataBindController {
     }
 	
 	@RequestMapping(value="/requestbodybind", method = {RequestMethod.POST})
-    public @ResponseBody AccountModel requestBodyBind(@RequestBody AccountModel accountModel){
+	@ResponseBody
+    public AccountModel requestBodyBind(@RequestBody AccountModel accountModel){
 				
 		return accountModel;
     }
