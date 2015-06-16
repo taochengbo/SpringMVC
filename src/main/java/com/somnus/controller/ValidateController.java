@@ -27,7 +27,8 @@ public class ValidateController {
 	}
 	
 	@RequestMapping(value="/test", method = {RequestMethod.POST})
-	public String test(Model model, @Valid @ModelAttribute("contentModel") ValidateModel validateModel, BindingResult result) throws NoSuchAlgorithmException{
+	public String test(Model model, @Valid @ModelAttribute("contentModel") ValidateModel validateModel, 
+	        BindingResult result) throws NoSuchAlgorithmException{
 		
 		//如果有验证错误 返回到form页面
         if(result.hasErrors())

@@ -29,27 +29,29 @@ public class DataBindController {
 	@RequestMapping(value="/parambind", method = {RequestMethod.GET})
     public ModelAndView paramBind(){
 		
-		ModelAndView modelAndView = new ModelAndView();  
-		modelAndView.setViewName("parambind");  
+		ModelAndView modelAndView = new ModelAndView();
+		modelAndView.setViewName("parambind");
         return modelAndView;
     }
 	
 	@RequestMapping(value="/parambind", method = {RequestMethod.POST})
-    public ModelAndView paramBind(HttpServletRequest request, @RequestParam("urlParam") String urlParam, @RequestParam("formParam") String formParam, @RequestParam("formFile") MultipartFile formFile){
+    public ModelAndView paramBind(HttpServletRequest request, @RequestParam("urlParam") String urlParam, 
+            @RequestParam("formParam") String formParam, @RequestParam("formFile") MultipartFile formFile){
 		
 		//如果不用注解自动绑定，我们还可以像下面一样手动获取数据
 		String urlParam1 = ServletRequestUtils.getStringParameter(request, "urlParam", null);
 		String formParam1 = ServletRequestUtils.getStringParameter(request, "formParam", null);
         MultipartFile formFile1 = ((MultipartHttpServletRequest) request).getFile("formFile"); 
 		
-		ModelAndView modelAndView = new ModelAndView();  
-		modelAndView.addObject("urlParam", urlParam);  
-		modelAndView.addObject("formParam", formParam);  
-		modelAndView.addObject("formFileName", formFile.getOriginalFilename());  
+		ModelAndView modelAndView = new ModelAndView();
+		modelAndView.addObject("urlParam", urlParam);
+		modelAndView.addObject("formParam", formParam);
+		modelAndView.addObject("formFileName", formFile.getOriginalFilename());
 		
-		modelAndView.addObject("urlParam1", urlParam1);  
-		modelAndView.addObject("formParam1", formParam1);  
-		modelAndView.addObject("formFileName1", formFile1.getOriginalFilename());  
+		modelAndView.addObject("urlParam1", urlParam1);
+		modelAndView.addObject("formParam1", formParam1);
+		modelAndView.addObject("formFileName1", formFile1.getOriginalFilename());
+		
 		modelAndView.setViewName("parambindresult");  
         return modelAndView;
     }
@@ -69,14 +71,16 @@ public class DataBindController {
 	}*/
 	
 	@RequestMapping(value="/modelautobind", method = {RequestMethod.POST})
-	public String modelAutoBind(HttpServletRequest request, @ModelAttribute("accountmodel") AccountModel accountModel){
+	public String modelAutoBind(HttpServletRequest request, 
+	        @ModelAttribute("accountmodel") AccountModel accountModel){
 		
 		return "modelautobindresult";
 	}
 	
 	//@CookieValue Test
 	@RequestMapping(value="/cookiebind", method = {RequestMethod.GET})
-    public String cookieBind(HttpServletRequest request, Model model, @CookieValue(value="JSESSIONID", defaultValue="") String jsessionId){
+    public String cookieBind(HttpServletRequest request, Model model, 
+            @CookieValue(value="JSESSIONID", defaultValue="") String jsessionId){
 		
 		model.addAttribute("jsessionId", jsessionId);
         return "cookiebindresult";
@@ -84,7 +88,8 @@ public class DataBindController {
 	
 	//@RequestHeader Test
 	@RequestMapping(value="/requestheaderbind", method = {RequestMethod.GET})
-    public String requestHeaderBind(HttpServletRequest request, Model model, @RequestHeader(value="User-Agent", defaultValue="") String userAgent){
+    public String requestHeaderBind(HttpServletRequest request, Model model, 
+            @RequestHeader(value="User-Agent", defaultValue="") String userAgent){
 		
 		model.addAttribute("userAgent", userAgent);
         return "requestheaderbindresult";
@@ -118,7 +123,8 @@ public class DataBindController {
 	}
 	
 	@RequestMapping(value="/passwordbind", method = {RequestMethod.POST})
-	public String passwordBindPost(@ModelAttribute("sessionaccountmodel") AccountModel accountModel, SessionStatus status){
+	public String passwordBindPost(@ModelAttribute("sessionaccountmodel") 
+	AccountModel accountModel, SessionStatus status){
 		
 		//销毁@SessionAttributes中value指定名称的数据
 		status.setComplete();
