@@ -26,7 +26,7 @@ public class AuthInterceptor extends HandlerInterceptorAdapter {
                 return true;
             } else{                
                 //返回到登录界面
-                response.sendRedirect("account/login");
+                response.sendRedirect("../account/login");
                 return false;       
             }
         } else
