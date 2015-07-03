@@ -124,7 +124,7 @@ public class DataBindController {
 	
 	@RequestMapping(value="/passwordbind", method = {RequestMethod.POST})
 	public String passwordBindPost(@ModelAttribute("sessionaccountmodel") 
-	AccountModel accountModel, SessionStatus status){
+	              AccountModel accountModel, SessionStatus status){
 		
 		//销毁@SessionAttributes中value指定名称的数据
 		status.setComplete();
