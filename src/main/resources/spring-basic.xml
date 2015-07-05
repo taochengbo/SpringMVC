@@ -10,7 +10,9 @@
         http://www.springframework.org/schema/context/spring-context.xsd 
         http://www.springframework.org/schema/mvc 
         http://www.springframework.org/schema/mvc/spring-mvc.xsd">
-     <!-- 默认的注解映射的支持 -->  
+        
+	<!-- 默认的注解映射的支持 -->
+	<mvc:annotation-driven />
     <mvc:annotation-driven validator="validator" conversion-service="conversion-service" />
     
     <bean id="validator" class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean">
