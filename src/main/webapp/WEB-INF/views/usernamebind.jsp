@@ -10,7 +10,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<form:form modelAttribute="sessionaccountmodel" method="post"> 	
+	<form:form modelAttribute="sessionAccount" method="post"> 	
 		用户名：<form:input path="username"/><br/>
 		<input type="submit" value="Submit" />
 	</form:form>  

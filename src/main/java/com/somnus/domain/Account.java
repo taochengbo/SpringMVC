@@ -2,7 +2,7 @@ package com.somnus.domain;
 
 import java.io.Serializable;
 
-public class AccountModel implements Serializable {
+public class Account implements Serializable {
 	
 	/**
 	 * 
@@ -11,7 +11,7 @@ public class AccountModel implements Serializable {
 	private String username;
 	private String password;
 	
-	public AccountModel(){}
+	public Account(){}
 	
 	public void setUsername(String username){
 		this.username=username;

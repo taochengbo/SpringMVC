@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	用户名：${sessionaccountmodel.username}<br/>
-	密 码：${sessionaccountmodel.password}
+	用户名：${sessionAccount.username}<br/>
+	密 码：${sessionAccount.password}
 </body>
 </html>
