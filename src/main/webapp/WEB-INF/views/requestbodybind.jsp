@@ -16,20 +16,27 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <title>Insert title here</title>
 </head>
 <body>
-	<form:form modelAttribute="accountmodel" method="post"> 	
-		用户名：<form:input path="username"/><br/>
-		密 码：<form:password path="password"/><br/>
+	<form:form modelAttribute="account" method="post"> 	
+		账 号  ：<form:input path="username"/><br/><br/>
+		密 码  ：<form:password path="password"/><br/>
 		<input type="button" id="submit" value="Submit" />
-	</form:form> 
+	</form:form>
+	
+	<fieldset id="login" style="width:600px; border:1px solid #000;border-left:none;border-right:none">   
+		<legend style="">用户登录</legend>   
+		<p align="center">账号：<input type="text" name="username" /></p>   
+		<p align="center">密码：<input type="password" name="password" /></p>   
+		<p align="center"><input type="submit" id="submit2" value="登录" /></p>   
+	</fieldset>
 	
 	<script type="text/javascript">
-		$(function() { 
+		$(function() {
 			$("#submit").click(function() {   
 	            var postdata = '{"username":"' + $('#username').val() + '","password":"' + $('#password').val() + '"}';   
 			    $.ajax({  
 			        type : 'POST',  
 			        contentType : 'application/json',  
-			        url : '<%=basePath%>databind/requestbodybind',  
+			        url : '<%=basePath%>databind/requestbodybind',
 			        processData : false,  
 			        dataType : 'json',  
 			        data : postdata,  
@@ -41,6 +48,23 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			        }  
 			    }); 
 			});
+			$("#submit2").click(function(){   
+	               // 序列化表单的值
+	                var params = $("#login").serialize();//username=admin&password=123456
+					$.ajax({
+						// 数据发送方式
+						type: "POST",
+						// 后台处理程序
+						url:  '<%=basePath%>databind/requestbodybind',
+						// 接受数据格式
+						dataType: "JSON",
+						// 要传递的数据
+						data: params,
+						success: function(data){
+							 alert('username : '+data.username+'\npassword : '+data.password);
+						}
+					});                
+			});   
 	    });
 	</script> 
 </body>
