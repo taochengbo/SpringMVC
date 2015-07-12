@@ -142,8 +142,8 @@
 					<stopPort>9998</stopPort>
 					<stopKey>stop-jetty-for-it</stopKey>
 					<webApp>
-						<!-- 指定项目路径(如果不写，则按照pom.xml里面的artifactId属性值配置)，访问路径为http://localhost:9999/oa -->
-						<!-- 配置<contextPath>/Somnus</contextPath>，则访问路径为http://localhost:9999/oa -->
+						<!-- 指定项目路径(如果不写，则按照pom.xml里面的artifactId属性值配置)，访问路径为http://localhost:9999/SpringMVC -->
+						<!-- 配置<contextPath>/Somnus</contextPath>，则访问路径为http://localhost:9999/SpringMVC -->
 						<!-- 配置<contextPath>/</contextPath>，则访问路径为http://localhost:9999 -->
 						<contextPath>/SpringMVC</contextPath>
 						<!-- 更改jetty默认webdefault.xml文件，主要修改了useFileMappedBuffer属性为false，使其不锁定静态文件 -->

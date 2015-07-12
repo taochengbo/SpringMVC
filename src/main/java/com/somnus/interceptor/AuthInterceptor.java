@@ -24,12 +24,12 @@ public class AuthInterceptor extends HandlerInterceptorAdapter {
                 //没有声明需要权限,或者声明不验证权限
             if(authPassport == null || authPassport.validate() == false){
                 return true;
-            } else{                
+            } else{
                 //返回到登录界面
                 response.sendRedirect("../account/login");
-                return false;       
+                return false;
             }
         } else
-            return true;   
+            return true;
      }
 }

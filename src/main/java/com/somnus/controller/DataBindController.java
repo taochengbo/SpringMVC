@@ -18,11 +18,13 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.somnus.domain.Account;
+import com.somnus.interceptor.AuthPassport;
 
 @Controller
 @RequestMapping(value = "/databind")
 public class DataBindController {
 
+	@AuthPassport
 	@RequestMapping(value="/parambind", method = {RequestMethod.GET})
     public ModelAndView paramBind(){
 		
@@ -31,6 +33,7 @@ public class DataBindController {
         return modelAndView;
     }
 	
+	@AuthPassport
 	@RequestMapping(value="/parambind", method = {RequestMethod.POST})
     public ModelAndView paramBind(HttpServletRequest request, @RequestParam("urlParam") String urlParam, 
             @RequestParam("formParam") String formParam, @RequestParam("formFile") MultipartFile formFile){
