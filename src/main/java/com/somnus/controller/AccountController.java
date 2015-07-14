@@ -1,5 +1,10 @@
 package com.somnus.controller;
 
+
+import java.io.PrintWriter;
+
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -20,5 +25,16 @@ public class AccountController {
     public String login(){
         
         return "login";
+    }
+    
+    @RequestMapping(value="/json", method = {RequestMethod.GET})
+    public void json(HttpServletResponse response, PrintWriter out){
+    	response.setCharacterEncoding("UTF-8");
+    	/*response.setContentType("application/json;charset=UTF-8");*/
+    	/*response.setContentType("application/xml;charset=UTF-8");*/
+    	response.setContentType("text/html;charset=utf-8");
+    	response.setHeader("pragma","no-cache");
+    	response.setHeader("cache-control","no-cache");
+    	out.write("{\"success\":"+true+",\"tip\":\"用户名已存在\"}");
     }
 }
