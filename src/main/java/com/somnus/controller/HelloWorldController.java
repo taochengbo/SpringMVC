@@ -12,6 +12,11 @@ import com.somnus.interceptor.AuthPassport;
 @RequestMapping(value = "/helloworld")
 public class HelloWorldController {
 	
+    /**
+     * URL通配符映射
+     * ？”和“*”两个字符。其中“？”表示1个字符，“*”表示匹配多个字符，“**”表示匹配0个或多个路径
+     * @return
+     */
 	@RequestMapping(value="/*", method = {RequestMethod.GET})
     public ModelAndView urlTest(){
 		
@@ -20,6 +25,10 @@ public class HelloWorldController {
         return modelAndView;
     }
 	
+	/**
+	 * 对一个action配置多个URL映射
+	 * @return
+	 */
 	@AuthPassport
 	@RequestMapping(value={"/index","/hello"})
     public ModelAndView index(){
@@ -30,6 +39,11 @@ public class HelloWorldController {
         return modelAndView;
     }
 	
+	/**
+	 * URL请求参数映射
+	 * @param id
+	 * @return
+	 */
 	@RequestMapping(value="/detail/{id}", method = {RequestMethod.GET})
     public ModelAndView getDetail(@PathVariable(value="id") Integer id){
 		
@@ -39,6 +53,12 @@ public class HelloWorldController {
         return modelAndView;
     }
 	
+	/**
+	 * URL正则表达式映射
+	 * @param name
+	 * @param age
+	 * @return
+	 */
 	@RequestMapping(value="/reg/{name:\\w+}-{age:\\d+}", method = {RequestMethod.GET})
     public ModelAndView regUrlTest(@PathVariable(value="name") String name, @PathVariable(value="age") Integer age){
 		
@@ -49,6 +69,10 @@ public class HelloWorldController {
         return modelAndView;
     }
 	
+	/**
+	 * 指定映射请求中或者某参数必须不等于某个值
+	 * @return
+	 */
 	@RequestMapping(value="/paramstest", params="example!=AAA", method = {RequestMethod.GET})
 	public ModelAndView paramsTest(){
 		

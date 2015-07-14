@@ -21,7 +21,7 @@ public class AuthInterceptor extends HandlerInterceptorAdapter {
             Object handler) throws Exception {
         if(handler.getClass().isAssignableFrom(HandlerMethod.class)){
             AuthPassport authPassport = ((HandlerMethod) handler).getMethodAnnotation(AuthPassport.class);
-                //没有声明需要权限,或者声明不验证权限
+            //没有声明需要权限,或者声明不验证权限
             if(authPassport == null || authPassport.validate() == false){
                 return true;
             } else{
