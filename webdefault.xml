@@ -509,7 +509,7 @@
     </locale-encoding-mapping>
     <locale-encoding-mapping>
       <locale>zh</locale>
-      <encoding>UTF-8</encoding>
+      <encoding>GB2312</encoding>
     </locale-encoding-mapping>
     <locale-encoding-mapping>
       <locale>zh_TW</locale>

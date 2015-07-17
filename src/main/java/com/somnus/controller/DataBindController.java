@@ -109,5 +109,15 @@ public class DataBindController {
 				
 		return account;
     }
+	
+	@RequestMapping(value="/json", method = {RequestMethod.POST})
+    @ResponseBody
+    public Account json(@RequestParam("username") String username,
+            @RequestParam("password") String password){
+	    Account account = new Account();
+	    account.setUsername(username);
+	    account.setPassword(password);
+        return account;
+    }
 		
 }

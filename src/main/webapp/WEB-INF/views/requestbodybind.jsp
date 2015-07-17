@@ -1,8 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-
+<%@ page language="java" contentType="text/html; charset=UTF-8"pageEncoding="UTF-8"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
@@ -26,13 +24,19 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<legend style="">用户登录</legend>   
 		<p align="center">账号：<input type="text" name="username" /></p>   
 		<p align="center">密码：<input type="password" name="password" /></p>   
-		<p align="center"><input type="submit" id="submit2" value="登录" /></p>   
+		<p align="center"><input type="submit" id="submit2" value="登录2" /></p>  
+		<p align="center"><input type="submit" id="submit3" value="登录3" /></p>  
 	</fieldset>
 	
 	<script type="text/javascript">
 		$(function() {
-			$("#submit").click(function() {   
-	            var postdata = '{"username":"' + $('#username').val() + '","password":"' + $('#password').val() + '"}';   
+			$("#submit").click(function() {
+				var json = {
+			         'username':$('#username').val(),
+			         'password':$('#password').val()
+			    };
+				//json字符串
+			    var postdata = JSON.stringify(json);
 			    $.ajax({  
 			        type : 'POST',  
 			        contentType : 'application/json',  
@@ -49,22 +53,33 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			    }); 
 			});
 			$("#submit2").click(function(){   
-	               // 序列化表单的值
-	                var params = $("#login").serialize();//username=admin&password=123456
+	                // 序列化表单的值//username=admin&password=123456
+	                var params = $("#login").serialize();
 					$.ajax({
-						// 数据发送方式
 						type: "POST",
-						// 后台处理程序
-						url:  '<%=basePath%>databind/requestbodybind',
-						// 接受数据格式
+						url:  '<%=basePath%>databind/json',
 						dataType: "JSON",
-						// 要传递的数据
 						data: params,
 						success: function(data){
 							 alert('username : '+data.username+'\npassword : '+data.password);
 						}
 					});                
-			});   
+			});
+			
+			//@RequestParam 接收传 json对象
+			$("#submit3").click(function(){
+                 $.ajax({
+                     type: "POST",
+                     /* contentType : 'application/x-www-form-urlencoded',*/
+                     url:  '<%=basePath%>databind/json',
+                     dataType: "JSON",
+                     data: {'username':$("#login :input[name=username]").val(),
+                    	 'password':$("#login :input[name=password]").val()},
+                     success: function(data){
+                          alert('username : '+data.username+'\npassword : '+data.password);
+                     }
+                 });                
+            });
 	    });
 	</script> 
 </body>
