@@ -39,9 +39,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			    var postdata = JSON.stringify(json);
 			    $.ajax({  
 			        type : 'POST',  
-			        contentType : 'application/json',  
+			        contentType : 'application/json',
+			        /**
+                     *(默认: true) 默认情况下，通过data选项传递进来的数据，如果是一个对象(技术上讲只要不是字符串)，
+                     * 都会处理转化成一个查询字符串，以配合默认内容类型 "application/x-www-form-urlencoded"。
+                     * 如果要发送 DOM 树信息或其它不希望转换的信息，请设置为 false。
+                     */
+			        processData : false,
 			        url : '<%=basePath%>databind/requestbodybind',
-			        processData : false,  
 			        dataType : 'json',  
 			        data : postdata,  
 			        success : function(data) {  
@@ -53,8 +58,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			    }); 
 			});
 			$("#submit2").click(function(){   
-	                // 序列化表单的值//username=admin&password=123456
+			        /* 序列化表单的值username=admin&password=123456 */
 	                var params = $("#login").serialize();
+	                alert(params);
 					$.ajax({
 						type: "POST",
 						url:  '<%=basePath%>databind/json',
@@ -67,6 +73,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			});
 			
 			//@RequestParam 接收传 json对象
+			/*username=admin&password=123456 */
 			$("#submit3").click(function(){
                  $.ajax({
                      type: "POST",
@@ -78,7 +85,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                      success: function(data){
                           alert('username : '+data.username+'\npassword : '+data.password);
                      }
-                 });                
+                 }); 
             });
 	    });
 	</script> 

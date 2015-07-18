@@ -29,7 +29,6 @@ public class AccountController {
     
     @RequestMapping(value="/json", method = {RequestMethod.GET})
     public void json(HttpServletResponse response, PrintWriter out){
-    	response.setCharacterEncoding("UTF-8");
     	/*response.setContentType("application/json;charset=UTF-8");*/
     	/*response.setContentType("application/xml;charset=UTF-8");*/
     	response.setContentType("text/html;charset=utf-8");
