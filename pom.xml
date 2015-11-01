@@ -84,6 +84,7 @@
 
 	</dependencies>
 	<build>
+		<finalName>SpringMVC</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
@@ -126,31 +127,41 @@
 
 			<!-- 配置Maven插件(mvn jetty:run可以运行项目) -->
 			<plugin>
-				<groupId>org.eclipse.jetty</groupId>
+				<groupId>org.mortbay.jetty</groupId>
 				<artifactId>jetty-maven-plugin</artifactId>
-				<version>9.1.0.RC1</version>
+				<version>8.1.9.v20130131</version>
 				<configuration>
-					<!-- 指定访问端口 -->
+					<webAppConfig>
+						<contextPath>/${project.build.finalName}</contextPath>
+					</webAppConfig>
 					<httpConnector>
-						<port>9999</port>
+						<port>8081</port>
 					</httpConnector>
-					<!-- 间隔x扫描一次,实现热部署 -->
-					<scanIntervalSeconds>3</scanIntervalSeconds>
-					<!-- 编写类文件之后，是否自动重启jetty；可选后面两个值[manual|automatic] -->
-					<reload>manual</reload>
-					<!-- 指定关闭端口 -->
-					<stopPort>9998</stopPort>
-					<stopKey>stop-jetty-for-it</stopKey>
-					<webApp>
-						<!-- 指定项目路径(如果不写，则按照pom.xml里面的artifactId属性值配置)，访问路径为http://localhost:9999/SpringMVC -->
-						<!-- 配置<contextPath>/Somnus</contextPath>，则访问路径为http://localhost:9999/SpringMVC -->
-						<!-- 配置<contextPath>/</contextPath>，则访问路径为http://localhost:9999 -->
-						<contextPath>/SpringMVC</contextPath>
-						<!-- 更改jetty默认webdefault.xml文件，主要修改了useFileMappedBuffer属性为false，使其不锁定静态文件 -->
-						<!-- 此文件在C盘\用户目录\.m2\repository\org\eclipse\jetty\jetty-webapp\9.1.0.RC1\找到jar包，打开jar包目录org\eclipse\jetty\webapp\目录中 -->
-						<defaultsDescriptor>webdefault.xml</defaultsDescriptor>
-					</webApp>
+					<scanIntervalSeconds>2</scanIntervalSeconds>
+					<stopKey>shutdown</stopKey>
+					<stopPort>9966</stopPort>
 				</configuration>
+			</plugin>
+			
+			<plugin>
+				<groupId>org.apache.tomcat.maven</groupId>
+				<artifactId>tomcat7-maven-plugin</artifactId>
+				<version>2.2</version>
+				<configuration>
+					<path>/${project.build.finalName}</path>
+					<port>8080</port>
+					<uriEncoding>UTF-8</uriEncoding>
+					<finalName>${project.build.finalName}</finalName>
+					<server>tomcat7</server>
+				</configuration>
+				<executions>
+					<execution>
+						<phase>package</phase>
+						<goals>
+							<goal>run</goal>
+						</goals>
+					</execution>
+				</executions>
 			</plugin>
 		</plugins>
 	</build>
