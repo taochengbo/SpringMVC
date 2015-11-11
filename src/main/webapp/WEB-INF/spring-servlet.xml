@@ -72,4 +72,18 @@
         <bean class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor" />  
     </mvc:interceptors>
     
+    <!-- ################################################################ -->
+    <!--    注意：当spring-servlet.xml中使用<mvc:annotation-driven/>时，                               -->
+    <!--    如果是3.1之前已经默认注入AnnotationMethodHandlerAdapter，                                                 -->
+    <!--    3.1之后默认注入RequestMappingHandlerAdapter只需加上相关jackson的jar包即可! -->
+    <!-- ################################################################ -->
+    
+    <!-- <bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter">  
+        <property name="messageConverters">  
+            <list>  
+                <bean class="org.springframework.http.converter.json.MappingJacksonHttpMessageConverter"/>  
+            </list>  
+        </property>  
+    </bean> -->
+    
 </beans>
