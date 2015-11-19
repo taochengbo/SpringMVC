@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
 <%
@@ -35,7 +35,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			         'username':$('#username').val(),
 			         'password':$('#password').val()
 			    };
-				//json字符串
+				//json字符串 {"username":"admin","password":"123456"}
 			    var postdata = JSON.stringify(json);
 			    $.ajax({  
 			        type : 'POST',  
@@ -64,7 +64,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					$.ajax({
 						type: "POST",
 						url:  '<%=basePath%>databind/json',
-						dataType: "JSON",
+						dataType: "json",
 						data: params,
 						success: function(data){
 							 alert('username : '+data.username+'\npassword : '+data.password);
@@ -79,7 +79,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                      type: "POST",
                      /* contentType : 'application/x-www-form-urlencoded',*/
                      url:  '<%=basePath%>databind/json',
-                     dataType: "JSON",
+                     dataType: "json",
                      data: {'username':$("#login :input[name=username]").val(),
                     	 'password':$("#login :input[name=password]").val()},
                      success: function(data){
