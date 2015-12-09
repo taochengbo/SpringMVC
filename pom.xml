@@ -94,8 +94,9 @@
 					<resource>1.7</resource>
 				</configuration>
 			</plugin>
+			
 			<!-- 将源码打成jar包 -->
-			<plugin>
+			<!-- <plugin>
 				<artifactId>maven-source-plugin</artifactId>
 				<configuration>
 					<attach>true</attach>
@@ -108,10 +109,10 @@
 						</goals>
 					</execution>
 				</executions>
-			</plugin>
+			</plugin> -->
 
 			<!-- 编译jar包 -->
-			<plugin>
+			<!-- <plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-jar-plugin</artifactId>
 				<configuration>
@@ -123,7 +124,7 @@
 						</manifest>
 					</archive>
 				</configuration>
-			</plugin>
+			</plugin> -->
 
 			<!-- 配置Maven插件(mvn jetty:run可以运行项目) -->
 			<plugin>

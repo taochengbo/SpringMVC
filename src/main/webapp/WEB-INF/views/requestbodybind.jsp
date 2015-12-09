@@ -7,13 +7,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 %>
 <html>
 <head>
-
-<script src="<%=basePath%>js/jquery-2.1.0.min.js"></script>
-
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+	<script src="<%=path%>/js/jquery-2.1.0.min.js"></script>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title>Insert title here</title>
 </head>
 <body>
+	<%=path %>||<%=basePath %>
 	<form:form modelAttribute="account" method="post"> 	
 		账 号  ：<form:input path="username"/><br/><br/>
 		密 码  ：<form:password path="password"/><br/>
@@ -46,7 +45,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                      * 如果要发送 DOM 树信息或其它不希望转换的信息，请设置为 false。
                      */
 			        processData : false,
-			        url : '<%=basePath%>databind/requestbodybind',
+			        url : '<%=path%>/databind/requestbodybind',
 			        dataType : 'json',  
 			        data : postdata,  
 			        success : function(data) {  
@@ -63,7 +62,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	                alert(params);
 					$.ajax({
 						type: "POST",
-						url:  '<%=basePath%>databind/json',
+						url:  '<%=path%>/databind/json',
 						dataType: "json",
 						data: params,
 						success: function(data){
@@ -78,7 +77,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                  $.ajax({
                      type: "POST",
                      /* contentType : 'application/x-www-form-urlencoded',*/
-                     url:  '<%=basePath%>databind/json',
+                     url:  '<%=path%>/databind/json',
                      dataType: "json",
                      data: {'username':$("#login :input[name=username]").val(),
                     	 'password':$("#login :input[name=password]").val()},
