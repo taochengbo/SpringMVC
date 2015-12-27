@@ -17,6 +17,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		账 号  ：<form:input path="username"/><br/><br/>
 		密 码  ：<form:password path="password"/><br/>
 		<input type="button" id="submit" value="Submit" />
+		<input type="button" id="submit_" value="Submit_" />
 	</form:form>
 	
 	<fieldset id="login" style="width:600px; border:1px solid #000;border-left:none;border-right:none">   
@@ -24,7 +25,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<p align="center">账号：<input type="text" name="username" /></p>   
 		<p align="center">密码：<input type="password" name="password" /></p>   
 		<p align="center"><input type="submit" id="submit2" value="登录2" /></p>  
-		<p align="center"><input type="submit" id="submit3" value="登录3" /></p>  
+		<p align="center"><input type="submit" id="submit3" value="登录3" /></p> 
 	</fieldset>
 	
 	<script type="text/javascript">
@@ -56,6 +57,38 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			        }  
 			    }); 
 			});
+			
+			//400 Bad Request, application/json数据发送后台接收必须是Modle，不能是单个属性
+			$("#submit_").click(function() {
+				var json = {
+			         'username':$('#username').val(),
+			         'password':$('#password').val()
+			    };
+				//json字符串 {"username":"admin","password":"123456"}
+			    var postdata = JSON.stringify(json);
+			    $.ajax({  
+			        type : 'POST',  
+			        contentType : 'application/json',
+			        processData : false,
+			        url : '<%=path%>/databind/json',
+			        dataType : 'json',  
+			        data : postdata,  
+			        success : function(data) {  
+			            alert('username : '+data.username+'\npassword : '+data.password);  
+			        },  
+			        error : function() {  
+			            alert('error...');  
+			        }  
+			    }); 
+			});
+			
+			
+			
+			
+			////////////////////////////////////////////////////////////////////////////////////////////
+			
+			
+			
 			$("#submit2").click(function(){   
 			        /* 序列化表单的值username=admin&password=123456 */
 	                var params = $("#login").serialize();
@@ -76,6 +109,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			$("#submit3").click(function(){
                  $.ajax({
                      type: "POST",
+                     /* contentType : 'application/json', 400 Bad Request*/
                      /* contentType : 'application/x-www-form-urlencoded',*/
                      url:  '<%=path%>/databind/json',
                      dataType: "json",

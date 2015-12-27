@@ -106,7 +106,8 @@ public class DataBindController {
 	@RequestMapping(value="/requestbodybind", method = {RequestMethod.POST})
 	@ResponseBody
     public Account requestBodyBind(@RequestBody Account account){
-				
+		System.out.println(account.getUsername());
+	    System.out.println(account.getPassword());		
 		return account;
     }
 	
