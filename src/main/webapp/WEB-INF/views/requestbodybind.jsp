@@ -37,6 +37,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			    };
 				//json字符串 {"username":"admin","password":"123456"}
 			    var postdata = JSON.stringify(json);
+			    alert(postdata);
 			    $.ajax({  
 			        type : 'POST',  
 			        contentType : 'application/json',
@@ -109,12 +110,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			$("#submit3").click(function(){
                  $.ajax({
                      type: "POST",
-                     /* contentType : 'application/json', 400 Bad Request*/
                      /* contentType : 'application/x-www-form-urlencoded',*/
                      url:  '<%=path%>/databind/json',
                      dataType: "json",
-                     data: {'username':$("#login :input[name=username]").val(),
-                    	 'password':$("#login :input[name=password]").val()},
+                     data: {username:$("#login :input[name=username]").val(),
+                    	 password:$("#login :input[name=password]").val()},
                      success: function(data){
                           alert('username : '+data.username+'\npassword : '+data.password);
                      }
