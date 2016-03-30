@@ -57,30 +57,33 @@ public class DataBindController {
     }
 	
 	@RequestMapping(value="/modelautobind", method = {RequestMethod.GET})
-	public String modelAutoBind(HttpServletRequest request, Model model){
-		
+	public String modelAutoBind(Model model){
 		model.addAttribute("account", new Account());
 		return "modelautobind";
 	}
 	
+	
 	/*@RequestMapping(value="/modelautobind", method = {RequestMethod.POST})
-	public String modelAutoBind(HttpServletRequest request, Model model, Account account){
-		
+	public String modelAutoBind(Model model, Account account){
 		model.addAttribute("account", account);
 		return "modelautobindresult";
 	}*/
-	
 	@RequestMapping(value="/modelautobind", method = {RequestMethod.POST})
-	public String modelAutoBind(HttpServletRequest request, 
-	        @ModelAttribute("account") Account account){
-		
+	public String modelAutoBind(@ModelAttribute("account") Account account){
+		return "modelautobindresult";
+	}
+	
+	
+	@RequestMapping(value="/modelautobind2")
+	public String modelAutoBind2(HttpServletRequest request,Account account){
+		System.out.println(account);
+		request.setAttribute("account", account);
 		return "modelautobindresult";
 	}
 	
 	//@CookieValue Test
 	@RequestMapping(value="/cookiebind", method = {RequestMethod.GET})
-    public String cookieBind(HttpServletRequest request, Model model, 
-            @CookieValue(value="JSESSIONID", defaultValue="") String jsessionId){
+    public String cookieBind(Model model,@CookieValue(value="JSESSIONID", defaultValue="") String jsessionId){
 		
 		model.addAttribute("jsessionId", jsessionId);
         return "cookiebindresult";
@@ -88,8 +91,7 @@ public class DataBindController {
 	
 	//@RequestHeader Test
 	@RequestMapping(value="/requestheaderbind", method = {RequestMethod.GET})
-    public String requestHeaderBind(HttpServletRequest request, Model model, 
-            @RequestHeader(value="User-Agent", defaultValue="") String userAgent){
+    public String requestHeaderBind(Model model, @RequestHeader(value="User-Agent", defaultValue="") String userAgent){
 		
 		model.addAttribute("userAgent", userAgent);
         return "requestheaderbindresult";
@@ -97,9 +99,7 @@ public class DataBindController {
 	
 	//@RequestBody Test
 	@RequestMapping(value="/requestbodybind", method = {RequestMethod.GET})
-    public String requestBodyBind(Model model){
-		
-		model.addAttribute("account", new Account());
+    public String requestBodyBind(){
         return "requestbodybind";
     }
 	

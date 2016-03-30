@@ -4,9 +4,6 @@ import java.io.Serializable;
 
 public class Account implements Serializable {
 	
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = -4835224895952766346L;
 	private String username;
 	private String password;
@@ -26,4 +23,10 @@ public class Account implements Serializable {
 	public String getPassword(){
 		return this.password;
 	}
+	
+	@Override
+	public String toString() {
+		return "account:{"+username+"|"+password+"}";
+	}
+	
 }

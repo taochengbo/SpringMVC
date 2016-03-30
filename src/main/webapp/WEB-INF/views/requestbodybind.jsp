@@ -13,12 +13,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 </head>
 <body>
 	<%=path %>||<%=basePath %>
-	<form:form modelAttribute="account" method="post"> 	
-		账 号  ：<form:input path="username"/><br/><br/>
-		密 码  ：<form:password path="password"/><br/>
+	<form>
+		账 号  ：<input type="text" name="username" id="username" ><br/>
+		密 码：<input type="password" name="password" id="password"><br/>
 		<input type="button" id="submit" value="Submit" />
 		<input type="button" id="submit_" value="Submit_" />
-	</form:form>
+	</form>
 	
 	<fieldset id="login" style="width:600px; border:1px solid #000;border-left:none;border-right:none">   
 		<legend style="">用户登录</legend>   

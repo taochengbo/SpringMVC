@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	用户名：${accountmodel.username}<br/>
-	密    码：${accountmodel.password}
+	用户名：${account.username}<br/>
+	密    码：${account.password}
 </body>
 </html>
