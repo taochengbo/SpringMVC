@@ -24,22 +24,21 @@ public class SessionController {
 	
 	@RequestMapping(value="/usernamebind", method = {RequestMethod.POST})
 	public String userNameBindPost(@ModelAttribute("sessionAccount") Account account){
-		System.out.println(">>>>>"+account.getUsername());
+		System.out.println(account);
 		//重定向到密码绑定测试
 		return "redirect:passwordbind";
 	}
 	
 	@RequestMapping(value="/passwordbind", method = {RequestMethod.GET})
 	public String passwordBind(@ModelAttribute("sessionAccount") Account account){
-	    System.out.println(">>>>>>>>>>"+account.getUsername());
+	    System.out.println(account);
 		return "passwordbind";
 	}
 	
 	@RequestMapping(value="/passwordbind", method = {RequestMethod.POST})
 	public String passwordBindPost(@ModelAttribute("sessionAccount")Account account, 
 	        SessionStatus status){
-	    System.out.println(">>>>>>>>>>>>>>>"+account.getUsername());
-	    System.out.println(">>>>>>>>>>>>>>>>"+account.getPassword());
+	    System.out.println(account);
 		//销毁@SessionAttributes中value指定名称的数据
 		status.setComplete();
 		//显示绑定结果
