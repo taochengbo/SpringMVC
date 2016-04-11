@@ -110,6 +110,7 @@ public class DataBindController {
 		return account;
     }
 	
+	/** @RequestParam注解了某参数，必传，除非单独设置required；如果某个参数没有使用注解，那么可传可不传*/
 	@RequestMapping(value="/json", method = {RequestMethod.POST})
     @ResponseBody
     public Account json(@RequestParam("username") String username,
