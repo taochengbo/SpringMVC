@@ -1,6 +1,5 @@
 package com.somnus.controller;
 
-
 import java.io.PrintWriter;
 
 import javax.servlet.http.HttpServletResponse;
@@ -8,11 +7,10 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.somnus.domain.Account;
+import com.somnus.util.WebUtils;
 
 /** 
  * @Title: AccountController.java 
@@ -28,7 +26,6 @@ public class AccountController {
     
     @RequestMapping(value="/login", method = {RequestMethod.GET})
     public String login(){
-        
         return "login";
     }
     
@@ -52,8 +49,8 @@ public class AccountController {
     public ModelAndView viewResolver(){
     	ModelAndView mv = new ModelAndView();
 	    Account account = new Account();
-	    account.setUsername("admin");
-	    account.setPassword("123456");
+	    account.setUsername(WebUtils.getRequest().getParameter("username"));
+	    account.setPassword(WebUtils.getRequest().getParameter("password"));
 	    mv.addObject(account);
         return mv;
     }
