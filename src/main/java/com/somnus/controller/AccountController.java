@@ -1,6 +1,7 @@
 package com.somnus.controller;
 
 import java.io.PrintWriter;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletResponse;
 
@@ -52,6 +53,14 @@ public class AccountController {
 	    account.setUsername(WebUtils.getRequest().getParameter("username"));
 	    account.setPassword(WebUtils.getRequest().getParameter("password"));
 	    mv.addObject(account);
+        return mv;
+    }
+    
+    @RequestMapping(value="/map", method = {RequestMethod.GET})
+    public ModelAndView map(){
+    	ModelAndView mv = new ModelAndView();
+    	Map<String,String> map = WebUtils.getParamMap();
+	    mv.addAllObjects(map);
         return mv;
     }
 }
