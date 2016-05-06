@@ -69,7 +69,7 @@
 			<list>
 				<!-- 不加配置返回 {"account":{"username":"admin","password":"123456"}} -->
 				<!-- 加配置返回 {"username":"admin","password":"123456"}-->
-				<bean class="org.springframework.web.servlet.view.json.MappingJacksonJsonView">
+				<bean class="org.springframework.web.servlet.view.json.MappingJackson2JsonView">
 					<property name="extractValueFromSingleKeyModel" value="true" /> 
 				</bean>
 				<bean class="org.springframework.web.servlet.view.xml.MarshallingView"> 
