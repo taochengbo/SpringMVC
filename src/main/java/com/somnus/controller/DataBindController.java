@@ -55,32 +55,36 @@ public class DataBindController {
 		modelAndView.setViewName("parambindresult");  
         return modelAndView;
     }
+	/* ******************************************************************************/
 	
 	@RequestMapping(value="/modelautobind", method = {RequestMethod.GET})
 	public String modelAutoBind(Model model){
+		//界面用到了【springmvc标签】才需要用model设置一个对象，给前端用来绑定
 		model.addAttribute("account", new Account());
 		return "modelautobind";
 	}
-	
-	
-	/*@RequestMapping(value="/modelautobind", method = {RequestMethod.POST})
-	public String modelAutoBind(Model model, Account account){
-		model.addAttribute("account", account);
-		return "modelautobindresult";
-	}*/
+	/**               以下三个方法都可以用来拿到对象后，并把对象传递到结果界面                            */
 	@RequestMapping(value="/modelautobind", method = {RequestMethod.POST})
 	public String modelAutoBind(@ModelAttribute("account") Account account){
+		System.out.println("第一种方式：" + account);
 		return "modelautobindresult";
 	}
 	
+	@RequestMapping(value="/modelautobind2", method = {RequestMethod.POST})
+	public String modelAutoBind(Model model, Account account){
+		System.out.println("第二种方式：" + account);
+		model.addAttribute("account", account);
+		return "modelautobindresult";
+	}
 	
-	@RequestMapping(value="/modelautobind2")
-	public String modelAutoBind2(HttpServletRequest request,Account account){
-		System.out.println(account);
+	@RequestMapping(value="/modelautobind3", method = {RequestMethod.POST})
+	public String modelAutoBind(HttpServletRequest request,Account account){
+		System.out.println("第三种方式：" + account);
 		request.setAttribute("account", account);
 		return "modelautobindresult";
 	}
 	
+	/* ******************************************************************************/
 	//@CookieValue Test
 	@RequestMapping(value="/cookiebind", method = {RequestMethod.GET})
     public String cookieBind(Model model,@CookieValue(value="JSESSIONID", defaultValue="") String jsessionId){
@@ -97,6 +101,7 @@ public class DataBindController {
         return "requestheaderbindresult";
     }
 	
+	/* ******************************************************************************/
 	//@RequestBody Test
 	@RequestMapping(value="/requestbodybind", method = {RequestMethod.GET})
     public String requestBodyBind(){

@@ -6,8 +6,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.somnus.interceptor.AuthPassport;
-
 @Controller
 @RequestMapping(value = "/helloworld")
 public class HelloWorldController {
@@ -29,7 +27,6 @@ public class HelloWorldController {
 	 * 对一个action配置多个URL映射
 	 * @return
 	 */
-	@AuthPassport
 	@RequestMapping(value={"/index","/hello"})
     public ModelAndView index(){
 		

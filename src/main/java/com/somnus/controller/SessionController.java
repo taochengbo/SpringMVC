@@ -45,9 +45,4 @@ public class SessionController {
 		return "sessionmodelbindresult";
 	}
 	
-	@ModelAttribute("sessionAccount")
-    public Account initAccount(){
-        return new Account();
-    }
-		
 }
