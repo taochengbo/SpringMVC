@@ -76,10 +76,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			        data : postdata,  
 			        success : function(data) {  
 			            alert('username : '+data.username+'\npassword : '+data.password);  
-			        },  
-			        error : function() {  
-			            alert('error...');  
-			        }  
+			        }
 			    }); 
 			});
 			
@@ -111,7 +108,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                  $.ajax({
                      type: "POST",
                      /* contentType : 'application/x-www-form-urlencoded',*/
-                     url:  '<%=path%>/databind/json',
+                     url:  '<%=path%>/databind/json2',
                      dataType: "json",
                      data: {username:$("#login :input[name=username]").val(),
                     	 password:$("#login :input[name=password]").val()},

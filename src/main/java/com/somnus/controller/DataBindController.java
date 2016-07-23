@@ -60,7 +60,7 @@ public class DataBindController {
 	@RequestMapping(value="/modelautobind", method = {RequestMethod.GET})
 	public String modelAutoBind(Model model){
 		//界面用到了【springmvc标签】才需要用model设置一个对象，给前端用来绑定
-		model.addAttribute("account", new Account());
+		/*model.addAttribute("account", new Account());*/
 		return "modelautobind";
 	}
 	/**               以下三个方法都可以用来拿到对象后，并把对象传递到结果界面                            */
@@ -124,6 +124,13 @@ public class DataBindController {
 	    account.setUsername(username);
 	    account.setPassword(password);
         return account;
+    }
+	
+	@RequestMapping(value="/json2", method = {RequestMethod.POST})
+	@ResponseBody
+    public Account json2(Account account){
+		System.out.println(account);
+		return account;
     }
 	
 }
