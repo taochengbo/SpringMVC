@@ -31,6 +31,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<input type="submit" value="Submit" />
 	</form>
 	<hr>
+	<form action="<%=path%>/databind/modelautobind4" method="post">
+		用户名：<input type="text" name="username"><br/>
+		密 码：<input type="password" name="password"><br/>
+		<input type="submit" value="Submit" />
+	</form>
+	<hr>
 	<a href="<%=path%>/databind/modelautobind2?username=admin&password=123456">link</a>
 </body>
 </html>

@@ -13,27 +13,21 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 </head>
 <body>
 	<%=path %>||<%=basePath %>
-	<form>
-		账 号  ：<input type="text" name="username" id="username" ><br/>
-		密 码：<input type="password" name="password" id="password"><br/>
-		<input type="button" id="submit" value="Submit" />
-		<input type="button" id="submit_" value="Submit_" />
-	</form>
 	
 	<fieldset id="login" style="width:600px; border:1px solid #000;border-left:none;border-right:none">   
 		<legend style="">用户登录</legend>   
 		<p align="center">账号：<input type="text" name="username" /></p>   
 		<p align="center">密码：<input type="password" name="password" /></p>   
-		<p align="center"><input type="submit" id="submit2" value="登录2" /></p>  
-		<p align="center"><input type="submit" id="submit3" value="登录3" /></p> 
+		<p align="center"><input type="submit" id="submit1" value="登录1" /></p>  
+		<p align="center"><input type="submit" id="submit2" value="登录2" /></p> 
 	</fieldset>
 	
 	<script type="text/javascript">
 		$(function() {
-			$("#submit").click(function() {
+			$("#submit1").click(function() {
 				var json = {
-			         'username':$('#username').val(),
-			         'password':$('#password').val()
+			         'username':$(':input[name=username]').val(),
+			         'password':$(':input[name=password]').val()
 			    };
 				//json字符串 {"username":"admin","password":"123456"}
 			    var postdata = JSON.stringify(json);
@@ -59,11 +53,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			    }); 
 			});
 			
-			//400 Bad Request, application/json数据发送后台接收必须是Modle，不能是单个属性
-			$("#submit_").click(function() {
+			//400 Bad Request, application/json数据发送后台接收必须是Model对象，不能是单个属性
+			$("#submit2").click(function() {
 				var json = {
-			         'username':$('#username').val(),
-			         'password':$('#password').val()
+					'username':$(':input[name=username]').val(),
+				    'password':$(':input[name=password]').val()
 			    };
 				//json字符串 {"username":"admin","password":"123456"}
 			    var postdata = JSON.stringify(json);
@@ -71,7 +65,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			        type : 'POST',  
 			        contentType : 'application/json',
 			        processData : false,
-			        url : '<%=path%>/databind/json',
+			        url : '<%=path%>/databind/requestbodybind2',
 			        dataType : 'json',  
 			        data : postdata,  
 			        success : function(data) {  
@@ -80,43 +74,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			    }); 
 			});
 			
-			
-			
-			
-			////////////////////////////////////////////////////////////////////////////////////////////
-			
-			
-			
-			$("#submit2").click(function(){   
-			        /* 序列化表单的值username=admin&password=123456 */
-	                var params = $("#login").serialize();
-	                alert(params);
-					$.ajax({
-						type: "POST",
-						url:  '<%=path%>/databind/json',
-						dataType: "json",
-						data: params,
-						success: function(data){
-							 alert('username : '+data.username+'\npassword : '+data.password);
-						}
-					});                
-			});
-			
-			//@RequestParam 接收传 json对象
-			/*username=admin&password=123456 */
-			$("#submit3").click(function(){
-                 $.ajax({
-                     type: "POST",
-                     /* contentType : 'application/x-www-form-urlencoded',*/
-                     url:  '<%=path%>/databind/json2',
-                     dataType: "json",
-                     data: {username:$("#login :input[name=username]").val(),
-                    	 password:$("#login :input[name=password]").val()},
-                     success: function(data){
-                          alert('username : '+data.username+'\npassword : '+data.password);
-                     }
-                 }); 
-            });
 	    });
 	</script> 
 </body>

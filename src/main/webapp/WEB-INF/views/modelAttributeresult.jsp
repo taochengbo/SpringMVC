@@ -7,6 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	${userAgent}
+	用户名：${account.username}<br/>
+	密    码：${account.password}
 </body>
 </html>
