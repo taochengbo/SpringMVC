@@ -32,8 +32,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				//json字符串 {"username":"admin","password":"123456"}
 			    var postdata = JSON.stringify(json);
 			    alert(postdata);
-			    $.ajax({  
-			        type : 'POST',  
+			    $.ajax({
+			        type : 'POST',
 			        contentType : 'application/json',
 			        /**
                      *(默认: true) 默认情况下，通过data选项传递进来的数据，如果是一个对象(技术上讲只要不是字符串)，
@@ -42,15 +42,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                      */
 			        processData : false,
 			        url : '<%=path%>/databind/requestbodybind',
-			        dataType : 'json',  
-			        data : postdata,  
-			        success : function(data) {  
-			            alert('username : '+data.username+'\npassword : '+data.password);  
-			        },  
-			        error : function() {  
-			            alert('error...');  
-			        }  
-			    }); 
+			        dataType : 'json',
+			        data : postdata,
+			        success : function(data) {
+			            alert('username : '+data.username+'\npassword : '+data.password);
+			        },
+			        error : function() {
+			            alert('error...');
+			        }
+			    });
 			});
 			
 			//400 Bad Request, application/json数据发送后台接收必须是Model对象，不能是单个属性
@@ -61,15 +61,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			    };
 				//json字符串 {"username":"admin","password":"123456"}
 			    var postdata = JSON.stringify(json);
-			    $.ajax({  
-			        type : 'POST',  
+			    $.ajax({
+			        type : 'POST',
 			        contentType : 'application/json',
 			        processData : false,
 			        url : '<%=path%>/databind/requestbodybind2',
-			        dataType : 'json',  
-			        data : postdata,  
-			        success : function(data) {  
-			            alert('username : '+data.username+'\npassword : '+data.password);  
+			        dataType : 'json',
+			        data : postdata,
+			        success : function(data) {
+			            alert('username : '+data.username+'\npassword : '+data.password);
 			        }
 			    }); 
 			});

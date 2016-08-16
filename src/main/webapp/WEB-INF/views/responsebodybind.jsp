@@ -59,7 +59,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                  $.ajax({
                      type: "POST",
                      /* contentType : 'application/x-www-form-urlencoded',*/
-                     url:  '<%=path%>/databind/responsebodybind',
+                     url:  '<%=path%>/databind/responsebodybind2',
                      dataType: "json",
                      data: {username:$("#login :input[name=username]").val(),
                     	 password:$("#login :input[name=password]").val()},

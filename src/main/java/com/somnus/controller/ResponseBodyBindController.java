@@ -19,7 +19,7 @@ public class ResponseBodyBindController {
 	@RequestMapping(value="/responsebodybind", method = {RequestMethod.POST})
 	@ResponseBody
     public Account responsebodybind(Account account){
-		System.out.println(account);
+		System.out.println("responsebodybind:" + account);
 		return account;
     }
 	
@@ -29,6 +29,7 @@ public class ResponseBodyBindController {
 	    Account account = new Account();
 	    account.setUsername(username);
 	    account.setPassword(password);
+	    System.out.println("responsebodybind2:" + account);
         return account;
     }
 	
