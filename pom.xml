@@ -83,6 +83,12 @@
 			<artifactId>hibernate-validator</artifactId>
 			<version>4.3.2.Final</version>
 		</dependency>
+		
+		<dependency>
+    		<groupId>com.alibaba</groupId>
+    		<artifactId>fastjson</artifactId>
+    		<version>1.2.16</version>
+		</dependency>
 	</dependencies>
 	
 	<build>
@@ -98,37 +104,6 @@
 				</configuration>
 			</plugin>
 			
-			<!-- 将源码打成jar包 -->
-			<!-- <plugin>
-				<artifactId>maven-source-plugin</artifactId>
-				<configuration>
-					<attach>true</attach>
-				</configuration>
-				<executions>
-					<execution>
-						<phase>compile</phase>
-						<goals>
-							<goal>jar</goal>
-						</goals>
-					</execution>
-				</executions>
-			</plugin> -->
-
-			<!-- 编译jar包 -->
-			<!-- <plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-jar-plugin</artifactId>
-				<configuration>
-					<archive>
-						<addMavenDescriptor>false</addMavenDescriptor>
-						<manifest>
-							<addDefaultImplementationEntries>true</addDefaultImplementationEntries>
-							<addDefaultSpecificationEntries>true</addDefaultSpecificationEntries>
-						</manifest>
-					</archive>
-				</configuration>
-			</plugin> -->
-
 			<!-- 配置Maven插件(mvn jetty:run可以运行项目) -->
 			<plugin>
 				<groupId>org.mortbay.jetty</groupId>
@@ -158,14 +133,6 @@
 					<finalName>${project.build.finalName}</finalName>
 					<server>tomcat7</server>
 				</configuration>
-				<!-- <executions>
-					<execution>
-						<phase>package</phase>
-						<goals>
-							<goal>run</goal>
-						</goals>
-					</execution>
-				</executions> -->
 			</plugin>
 		</plugins>
 	</build>
