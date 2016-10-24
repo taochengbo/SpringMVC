@@ -14,11 +14,11 @@ import org.springframework.web.servlet.ModelAndView;
 import com.somnus.interceptor.AuthPassport;
 
 @Controller
-@RequestMapping(value = "/databind")
+@RequestMapping(value = "databind")
 public class ParamBindController {
 
 	@AuthPassport
-	@RequestMapping(value="/parambind", method = {RequestMethod.GET})
+	@RequestMapping(value="parambind", method = {RequestMethod.GET})
     public ModelAndView paramBind(){
 		
 		ModelAndView modelAndView = new ModelAndView();
@@ -27,7 +27,7 @@ public class ParamBindController {
     }
 	
 	@AuthPassport
-	@RequestMapping(value="/parambind", method = {RequestMethod.POST})
+	@RequestMapping(value="parambind", method = {RequestMethod.POST})
     public ModelAndView paramBind(HttpServletRequest request, 
     		@RequestParam("urlParam") String urlParam, 
             @RequestParam("formParam") String formParam, 

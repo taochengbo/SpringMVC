@@ -10,14 +10,15 @@ import com.somnus.domain.Account;
 
 @Controller
 @SessionAttributes(value = "account")
+@RequestMapping(value = "session")
 public class SessionAttributesController {
 	
-	@RequestMapping(value="/sessionAttributes", method = {RequestMethod.GET})
+	@RequestMapping(value="sessionAttributes", method = {RequestMethod.GET})
 	public String sessionAttributes(){
 		return "sessionAttributes";
 	}
 	
-	@RequestMapping(value="/sessionAttributes", method = {RequestMethod.POST})
+	@RequestMapping(value="sessionAttributes", method = {RequestMethod.POST})
 	public String sessionAttributes(Model model, Account account){
 		System.out.println(account);
 		model.addAttribute("account",account);

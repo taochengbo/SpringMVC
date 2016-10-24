@@ -8,10 +8,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.alibaba.fastjson.JSON;
 
 @Controller
-@RequestMapping(value = "/array")
+@RequestMapping(value = "array")
 public class ArrayController {
 	
-	@RequestMapping(value="/test", method = {RequestMethod.POST})
+	@RequestMapping(value="test", method = {RequestMethod.POST})
 	@ResponseBody
     public Person test(Person person){
 		System.out.println(JSON.toJSON(person));

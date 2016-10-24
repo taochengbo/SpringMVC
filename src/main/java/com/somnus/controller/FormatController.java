@@ -10,10 +10,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.somnus.domain.FormatModel;
 
 @Controller
-@RequestMapping(value = "/format")
+@RequestMapping(value = "format")
 public class FormatController {
 	
-	@RequestMapping(value="/test", method = {RequestMethod.GET})
+	@RequestMapping(value="test", method = {RequestMethod.GET})
 	public String test(Model model) throws NoSuchFieldException, SecurityException{
 		if(!model.containsAttribute("contentModel")){
             

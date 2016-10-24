@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
-@RequestMapping(value = "/path")
+@RequestMapping(value = "path")
 public class PathController {
 
 	/**
@@ -29,7 +29,7 @@ public class PathController {
 	 * 
 	 * @return
 	 */
-	@RequestMapping(value = { "/hello", "/world" })
+	@RequestMapping(value = { "hello", "world" })
 	public ModelAndView index() {
 
 		ModelAndView modelAndView = new ModelAndView();
@@ -44,7 +44,7 @@ public class PathController {
 	 * @param id
 	 * @return
 	 */
-	@RequestMapping(value = "/detail/{id}", method = { RequestMethod.GET })
+	@RequestMapping(value = "detail/{id}", method = { RequestMethod.GET })
 	public ModelAndView getDetail(@PathVariable(value = "id") Integer id) {
 
 		ModelAndView modelAndView = new ModelAndView();
@@ -60,7 +60,7 @@ public class PathController {
 	 * @param age
 	 * @return
 	 */
-	@RequestMapping(value = "/reg/{name:\\w+}-{age:\\d+}", method = { RequestMethod.GET })
+	@RequestMapping(value = "reg/{name:\\w+}-{age:\\d+}", method = { RequestMethod.GET })
 	public ModelAndView regUrlTest(@PathVariable(value = "name") String name,
 			@PathVariable(value = "age") Integer age) {
 

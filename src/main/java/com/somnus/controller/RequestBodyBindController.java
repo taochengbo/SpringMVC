@@ -9,22 +9,22 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.somnus.domain.Account;
 
 @Controller
-@RequestMapping(value = "/databind")
+@RequestMapping(value = "databind")
 public class RequestBodyBindController {
 
-	@RequestMapping(value="/requestbodybind", method = {RequestMethod.GET})
+	@RequestMapping(value="requestbodybind", method = {RequestMethod.GET})
     public String requestBodyBind(){
         return "requestbodybind";
     }
 	
-	@RequestMapping(value="/requestbodybind", method = {RequestMethod.POST})
+	@RequestMapping(value="requestbodybind", method = {RequestMethod.POST})
 	@ResponseBody
     public Account requestBodyBind(@RequestBody Account account){
 		System.out.println("requestbodybind:" + account);
 		return account;
     }
 	
-	@RequestMapping(value="/requestbodybind2", method = {RequestMethod.POST})
+	@RequestMapping(value="requestbodybind2", method = {RequestMethod.POST})
     @ResponseBody
     public Account requestbodybind(String username,String password){
 	    Account account = new Account();

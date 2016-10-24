@@ -14,22 +14,22 @@ import com.alibaba.fastjson.JSON;
 import com.somnus.domain.Account;
 
 @Controller
-@RequestMapping(value = "/databind")
+@RequestMapping(value = "databind")
 public class ResponseBodyBindController {
 	
-	@RequestMapping(value="/responsebodybind", method = {RequestMethod.GET})
+	@RequestMapping(value="responsebodybind", method = {RequestMethod.GET})
     public String requestBodyBind(){
         return "responsebodybind";
     }
 
-	@RequestMapping(value="/responsebodybind", method = {RequestMethod.POST})
+	@RequestMapping(value="responsebodybind", method = {RequestMethod.POST})
 	@ResponseBody
     public Account responsebodybind(Account account){
 		System.out.println("responsebodybind:" + account);
 		return account;
     }
 	
-	@RequestMapping(value="/responsebodybind2", method = {RequestMethod.POST})
+	@RequestMapping(value="responsebodybind2", method = {RequestMethod.POST})
     @ResponseBody
     public Account responsebodybind(String username,String password){
 	    Account account = new Account();
@@ -39,7 +39,7 @@ public class ResponseBodyBindController {
         return account;
     }
 	
-	@RequestMapping(value="/complex", method = {RequestMethod.GET})
+	@RequestMapping(value="complex", method = {RequestMethod.GET})
     @ResponseBody
     public String complex(){
 	    Map<String,List<Integer>> map = new HashMap<String,List<Integer>>();
@@ -53,7 +53,7 @@ public class ResponseBodyBindController {
         return result;
     }
 	
-	@RequestMapping(value="/complex2", method = {RequestMethod.GET})
+	@RequestMapping(value="complex2", method = {RequestMethod.GET})
     @ResponseBody
     public Map<String,List<Integer>> complex2(){
 	    Map<String,List<Integer>> map = new HashMap<String,List<Integer>>();

@@ -22,15 +22,15 @@ import com.somnus.util.WebUtils;
  * @version V1.0 
  */
 @Controller
-@RequestMapping(value = "/account")
+@RequestMapping(value = "account")
 public class AccountController {
     
-    @RequestMapping(value="/login", method = {RequestMethod.GET})
+    @RequestMapping(value="login", method = {RequestMethod.GET})
     public String login(){
         return "login";
     }
     
-    @RequestMapping(value="/json", method = {RequestMethod.GET})
+    @RequestMapping(value="json", method = {RequestMethod.GET})
     public void json(HttpServletResponse response, PrintWriter out){
     	/*response.setContentType("application/json;charset=UTF-8");*/
     	/*response.setContentType("application/xml;charset=UTF-8");*/
@@ -46,7 +46,7 @@ public class AccountController {
      * @author：Somnus
      * @return
      */
-    @RequestMapping(value="/viewResolver", method = {RequestMethod.GET})
+    @RequestMapping(value="viewResolver", method = {RequestMethod.GET})
     public ModelAndView viewResolver(){
     	ModelAndView mv = new ModelAndView();
 	    Account account = new Account();
@@ -56,7 +56,7 @@ public class AccountController {
         return mv;
     }
     
-    @RequestMapping(value="/map", method = {RequestMethod.GET})
+    @RequestMapping(value="map", method = {RequestMethod.GET})
     public ModelAndView map(){
     	ModelAndView mv = new ModelAndView();
     	Map<String,String> map = WebUtils.getParamMap();

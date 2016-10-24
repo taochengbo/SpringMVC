@@ -11,26 +11,27 @@ import com.somnus.domain.Account;
 
 @Controller
 @SessionAttributes(value = "account")
+@RequestMapping(value = "ma")
 public class ModelAttributeController {
 	
-	@RequestMapping(value="/modelAttribute1", method = {RequestMethod.GET})
+	@RequestMapping(value="modelAttribute1", method = {RequestMethod.GET})
 	public String modelAttribute(){
 		return "modelAttribute1";
 	}
 	
-	@RequestMapping(value="/modelAttribute2username", method = {RequestMethod.POST})
+	@RequestMapping(value="modelAttribute2username", method = {RequestMethod.POST})
 	public String modelAttribute2username(Account account){
 		System.out.println("modelAttribute2username->" + account);
 		return "redirect:modelAttribute2";
 	}
 	
-	@RequestMapping(value="/modelAttribute2", method = {RequestMethod.GET})
+	@RequestMapping(value="modelAttribute2", method = {RequestMethod.GET})
 	public String passwordBind(@ModelAttribute("account")Account account){
 	    System.out.println("modelAttribute2->" + account);
 		return "modelAttribute2";
 	}
 	
-	@RequestMapping(value="/modelAttribute2password", method = {RequestMethod.POST})
+	@RequestMapping(value="modelAttribute2password", method = {RequestMethod.POST})
 	public String modelAttribute2password(@ModelAttribute("account")Account account, 
 	        SessionStatus status){
 	    System.out.println("modelAttribute2password->" + account);

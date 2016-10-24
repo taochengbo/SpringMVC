@@ -14,10 +14,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.somnus.domain.ValidateModel;
 
 @Controller
-@RequestMapping(value = "/validate")
+@RequestMapping(value = "validate")
 public class ValidateController {
 	
-	@RequestMapping(value="/test", method = {RequestMethod.GET})
+	@RequestMapping(value="test", method = {RequestMethod.GET})
 	public String test(Model model){
 
 		if(!model.containsAttribute("contentModel")){
@@ -26,7 +26,7 @@ public class ValidateController {
 		return "validatetest";
 	}
 	
-	@RequestMapping(value="/test", method = {RequestMethod.POST})
+	@RequestMapping(value="test", method = {RequestMethod.POST})
 	public String test(Model model, @Valid @ModelAttribute("contentModel") ValidateModel validateModel, 
 	        BindingResult result) throws NoSuchAlgorithmException{
 		
