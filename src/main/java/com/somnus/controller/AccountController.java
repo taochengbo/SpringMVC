@@ -25,11 +25,6 @@ import com.somnus.util.WebUtils;
 @RequestMapping(value = "account")
 public class AccountController {
     
-    @RequestMapping(value="login", method = {RequestMethod.GET})
-    public String login(){
-        return "login";
-    }
-    
     @RequestMapping(value="json", method = {RequestMethod.GET})
     public void json(HttpServletResponse response, PrintWriter out){
     	/*response.setContentType("application/json;charset=UTF-8");*/

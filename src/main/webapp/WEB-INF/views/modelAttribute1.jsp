@@ -13,7 +13,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <body>
 	<fieldset id="login" style="width:600px; border:1px solid #000;border-left:none;border-right:none">   
 		<legend style="">注册</legend>
-		<form action="<%=path %>/modelAttribute2username" method="post">
+		<form action="<%=path %>/ma/modelAttribute2username" method="post">
 		<p align="center">账号：<input type="text" name="username" /></p>   
 		<p align="center"><input type="submit"  value="下一步" /></p>  
 		</form>
