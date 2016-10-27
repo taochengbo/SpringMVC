@@ -1,22 +1,22 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
+	
 	<groupId>com.somnus</groupId>
 	<artifactId>SpringMVC</artifactId>
 	<packaging>war</packaging>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>SpringMVC Maven Webapp</name>
-	<url>http://maven.apache.org</url>
+	
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
+	
 	<!-- 指定Maven仓库 -->
 	<repositories>
-		<!-- oschina的maven仓库 -->
 		<repository>
-			<id>oschinaRepository</id>
-			<name>local private nexus</name>
-			<url>http://maven.wozsz.com/content/groups/public/</url>
+			<id>aliyun</id>
+			<name>aliyun</name>
+			<url>http://maven.aliyun.com/nexus/content/groups/public/</url>
 			<releases>
 				<enabled>true</enabled>
 			</releases>
@@ -26,7 +26,6 @@
 		</repository>
 	</repositories>
 
-	<!-- maven依赖包的书写是有顺序的，请不要更改下面dependency的顺序，避免造成JAR包冲突 -->
 	<dependencies>
 		<!-- servlet & jsp -->
 		<dependency>
