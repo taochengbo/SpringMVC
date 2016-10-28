@@ -7,8 +7,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
-import com.somnus.domain.Account;
-
 @Controller
 @SessionAttributes(value = "account")
 @RequestMapping(value = "ma")
@@ -39,6 +37,35 @@ public class ModelAttributeController {
 		status.setComplete();
 		//显示绑定结果
 		return "modelAttributeresult";
+	}
+	
+	public static class Account{
+		
+		private String username;
+		
+		private String password;
+		
+		public Account(){}
+		
+		public void setUsername(String username){
+			this.username=username;
+		}
+		public void setPassword(String password){
+			this.password=password;
+		}
+		
+		public String getUsername(){
+			return this.username;
+		}
+		public String getPassword(){
+			return this.password;
+		}
+		
+		@Override
+		public String toString() {
+			return "account:{"+username+"|"+password+"}";
+		}
+		
 	}
 	
 }

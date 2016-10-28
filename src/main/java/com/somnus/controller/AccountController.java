@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.somnus.domain.Account;
 import com.somnus.util.WebUtils;
 
 /** 
@@ -58,4 +57,33 @@ public class AccountController {
 	    mv.addAllObjects(map);
         return mv;
     }
+    
+public static class Account{
+		
+		private String username;
+		
+		private String password;
+		
+		public Account(){}
+		
+		public void setUsername(String username){
+			this.username=username;
+		}
+		public void setPassword(String password){
+			this.password=password;
+		}
+		
+		public String getUsername(){
+			return this.username;
+		}
+		public String getPassword(){
+			return this.password;
+		}
+		
+		@Override
+		public String toString() {
+			return "account:{"+username+"|"+password+"}";
+		}
+		
+	}
 }

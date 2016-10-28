@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.alibaba.fastjson.JSON;
-import com.somnus.domain.Account;
 
 @Controller
 @RequestMapping(value = "databind")
@@ -66,4 +65,34 @@ public class ResponseBodyBindController {
         return map;
     }
 	
+	
+	
+public static class Account{
+		
+		private String username;
+		
+		private String password;
+		
+		public Account(){}
+		
+		public void setUsername(String username){
+			this.username=username;
+		}
+		public void setPassword(String password){
+			this.password=password;
+		}
+		
+		public String getUsername(){
+			return this.username;
+		}
+		public String getPassword(){
+			return this.password;
+		}
+		
+		@Override
+		public String toString() {
+			return "account:{"+username+"|"+password+"}";
+		}
+		
+	}
 }
