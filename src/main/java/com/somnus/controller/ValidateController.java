@@ -27,13 +27,20 @@ public class ValidateController {
 		return "validatetest";
 	}
 	
+	/**
+	 * 这里面有个细节要注意，一旦你准备使用model校验，写上了@Valid，那就意味着，model后面必须加上一个参数BindingResult
+	 * 如果不加的话，你调用此方法，必须把model的属性全部传过来，少一个都400，妈蛋，这是不是bug啊
+	 * 我干嘛非要你SpringMVC提供的校验，我用aop去校验参数，又不需要你的BindingResult，
+	 * 干嘛非逼着我加上
+	 */
 	@RequestMapping(value="test", method = {RequestMethod.POST})
-	public String test(Model model, @Valid @ModelAttribute("contentModel") ValidateModel validateModel, 
-	        BindingResult result) throws NoSuchAlgorithmException{
+	public String test(@Valid @ModelAttribute("contentModel") ValidateModel validateModel
+			/*,BindingResult result*/){
 		
 		//如果有验证错误 返回到form页面
-        if(result.hasErrors())
-            return test(model);
+        /*if(result.hasErrors()){
+        	return test(model);
+        }*/
     	return "validatesuccess"; 	
 	}
 	
