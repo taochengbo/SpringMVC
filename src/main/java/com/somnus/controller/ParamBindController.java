@@ -7,6 +7,7 @@ import org.springframework.web.bind.ServletRequestUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
@@ -51,4 +52,11 @@ public class ParamBindController {
         return modelAndView;
     }
 	
+	@RequestMapping(value="doUpload", method = {RequestMethod.POST})
+	@ResponseBody
+    public String doUpload(
+            @RequestParam("file") MultipartFile formFile){
+		
+        return formFile.getOriginalFilename();
+    }
 }
