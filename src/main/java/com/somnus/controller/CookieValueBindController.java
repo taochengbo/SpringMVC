@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
-@RequestMapping(value = "databind")
+@RequestMapping(value = "cookie")
 public class CookieValueBindController {
 	
 	@RequestMapping(value="cookie", method = {RequestMethod.GET})

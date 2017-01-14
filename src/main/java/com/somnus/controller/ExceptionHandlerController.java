@@ -14,19 +14,25 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @RequestMapping(value = "exception")
 public class ExceptionHandlerController {
 	
+	/**
+	 * 这个只会是在当前的Controller里面起作用，如果想在所有的Controller里面统一处理异常的话，
+	 * 可以用@ControllerAdvice来创建一个专门处理的类。
+	 * @param e
+	 * @return
+	 */
 	@ExceptionHandler({ ArithmeticException.class })
 	@ResponseBody
-	public String testArithmeticException(Exception e) {
+	public String handleArithmeticException(Exception e) {
 		e.printStackTrace();
 		return "testArithmeticException";
 	}
 
-	@ExceptionHandler({ RuntimeException.class })
+	/*@ExceptionHandler({ RuntimeException.class })
 	@ResponseBody
-	public String testRuntimeException(Exception e) {
+	public String handleRuntimeException(Exception e) {
 		e.printStackTrace();
 		return "testRuntimeException";
-	}
+	}*/
 
 	/**
 	 * 当一个controller中有多个HandleException注解出现时，那么异常被哪个方法捕捉呢？这就存在一个优先级的问题
@@ -41,6 +47,11 @@ public class ExceptionHandlerController {
 		return id.toString();
 	}
 	
+	/**
+	 * 
+	 * @param id
+	 * @return
+	 */
 	@RequestMapping(value = "e2/{id}", method = { RequestMethod.GET })
 	@ResponseBody
 	public String testExceptionHandle2(@PathVariable(value = "id") Integer id) {

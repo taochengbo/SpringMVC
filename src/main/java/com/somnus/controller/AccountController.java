@@ -3,14 +3,16 @@ package com.somnus.controller;
 import java.io.PrintWriter;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.util.WebUtils;
 
-import com.somnus.util.WebUtils;
+import com.somnus.util.WebUtil;
 
 /** 
  * @Title: AccountController.java 
@@ -44,21 +46,23 @@ public class AccountController {
     public ModelAndView viewResolver(){
     	ModelAndView mv = new ModelAndView();
 	    Account account = new Account();
-	    account.setUsername(WebUtils.getRequest().getParameter("username"));
-	    account.setPassword(WebUtils.getRequest().getParameter("password"));
+	    account.setUsername(WebUtil.getRequest().getParameter("username"));
+	    account.setPassword(WebUtil.getRequest().getParameter("password"));
 	    mv.addObject(account);
         return mv;
     }
     
     @RequestMapping(value="map", method = {RequestMethod.GET})
-    public ModelAndView map(){
+    public ModelAndView map(HttpServletRequest request){
+    	Map<String, Object> param = WebUtils.getParametersStartingWith(request, "");
+    	System.out.println(param);
+    	/* ※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※*/
     	ModelAndView mv = new ModelAndView();
-    	Map<String,String> map = WebUtils.getParamMap();
-	    mv.addAllObjects(map);
+	    mv.addAllObjects(param);
         return mv;
     }
     
-public static class Account{
+    public static class Account{
 		
 		private String username;
 		

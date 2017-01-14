@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
-@RequestMapping(value = "databind")
+@RequestMapping(value = "request")
 public class RequestBodyBindController {
 
 	@RequestMapping(value="requestbodybind", method = {RequestMethod.GET})

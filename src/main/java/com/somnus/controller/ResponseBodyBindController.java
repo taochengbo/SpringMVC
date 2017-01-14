@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.alibaba.fastjson.JSON;
 
 @Controller
-@RequestMapping(value = "databind")
+@RequestMapping(value = "response")
 public class ResponseBodyBindController {
 	
 	@RequestMapping(value="responsebodybind", method = {RequestMethod.GET})
