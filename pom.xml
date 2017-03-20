@@ -10,7 +10,7 @@
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<!-- servlet & jsp & jstl -->
-		<servlet.version>2.5</servlet.version>
+		<servlet.version>3.1.0</servlet.version>
 		<jsp.version>2.2</jsp.version>
 		<jstl.version>1.2</jstl.version>
 		<!-- spring -->
@@ -44,12 +44,12 @@
 
 	<dependencies>
 		<!-- servlet & jsp -->
-		<dependency>
-			<groupId>javax.servlet</groupId>
-			<artifactId>servlet-api</artifactId>
-			<version>${servlet.version}</version>
-			<scope>provided</scope>
-		</dependency>
+		<dependency>  
+            <groupId>javax.servlet</groupId>  
+            <artifactId>javax.servlet-api</artifactId>  
+            <version>${servlet.version}</version>  
+            <scope>provided</scope>  
+        </dependency> 
 		<dependency>
 			<groupId>javax.servlet</groupId>
 			<artifactId>jstl</artifactId>

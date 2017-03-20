@@ -100,7 +100,17 @@
     		<mvc:mapping path="/databind/*"/>
     		<!-- 如果不定义 mvc:mapping path 将拦截所有的URL请求 -->
         	<bean class="com.somnus.interceptor.AuthInterceptor"></bean>
-    	</mvc:interceptor> 
+    	</mvc:interceptor>
+    	<mvc:interceptor>
+    		<mvc:mapping path="/interceptor/*"/>
+    		<!-- 如果不定义 mvc:mapping path 将拦截所有的URL请求 -->
+        	<bean class="com.somnus.interceptor.HandlerInterceptor1"></bean>
+    	</mvc:interceptor>
+    	<mvc:interceptor>
+    		<mvc:mapping path="/interceptor/*"/>
+    		<!-- 如果不定义 mvc:mapping path 将拦截所有的URL请求 -->
+        	<bean class="com.somnus.interceptor.HandlerInterceptor2"></bean>
+    	</mvc:interceptor>
         <!-- 国际化操作拦截器 如果采用基于（请求/Session/Cookie）则必需配置 --> 
         <bean class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor" />  
     </mvc:interceptors>
