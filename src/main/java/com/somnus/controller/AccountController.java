@@ -13,6 +13,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.util.WebUtils;
 
 import com.somnus.util.WebUtil;
+import com.thoughtworks.xstream.annotations.XStreamAlias;
 
 /** 
  * @Title: AccountController.java 
@@ -49,6 +50,7 @@ public class AccountController {
 	    account.setUsername(WebUtil.getRequest().getParameter("username"));
 	    account.setPassword(WebUtil.getRequest().getParameter("password"));
 	    mv.addObject(account);
+	    mv.setViewName("viewResolver");
         return mv;
     }
     
@@ -62,6 +64,7 @@ public class AccountController {
         return mv;
     }
     
+    @XStreamAlias("account")
     public static class Account{
 		
 		private String username;

@@ -1,9 +1,7 @@
 package com.somnus.controller;
 
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -38,31 +36,31 @@ public class ResponseBodyBindController {
         return account;
     }
 	
+	@RequestMapping(value="responsebodybind3", method = {RequestMethod.GET})
+    @ResponseBody
+    public Account responsebodybind(){
+	    Account account = new Account("admin", "123456");
+	    System.out.println("responsebodybind3:" + account);
+        return account;
+    }
+	
+	@RequestMapping(value="simple", method = {RequestMethod.GET})
+    @ResponseBody
+    public String simple(){
+        return "abc中国";
+    }
+	
 	@RequestMapping(value="complex", method = {RequestMethod.GET})
     @ResponseBody
     public String complex(){
-	    Map<String,List<Integer>> map = new HashMap<String,List<Integer>>();
-	    map.put("one", Arrays.asList(1));
-	    map.put("two", Arrays.asList(1,2));
-	    map.put("three", Arrays.asList(1,2,3));
-	    map.put("four", Arrays.asList(1,2,3,4));
-	    map.put("five", Arrays.asList(1,2,3,4,5));
-	    //TODO
-	    String result = JSON.toJSONString(map);
+	    String result = JSON.toJSONString(new Account("abc中国", "123456"));
         return result;
     }
 	
 	@RequestMapping(value="complex2", method = {RequestMethod.GET})
     @ResponseBody
-    public Map<String,List<Integer>> complex2(){
-	    Map<String,List<Integer>> map = new HashMap<String,List<Integer>>();
-	    map.put("one", Arrays.asList(1));
-	    map.put("two", Arrays.asList(1,2));
-	    map.put("three", Arrays.asList(1,2,3));
-	    map.put("four", Arrays.asList(1,2,3,4));
-	    map.put("five", Arrays.asList(1,2,3,4,5));
-	    //TODO
-        return map;
+    public List<String> complex2(){
+        return Arrays.asList("壹","贰","叁");
     }
 	
 	
@@ -75,6 +73,13 @@ public static class Account{
 		
 		public Account(){}
 		
+		
+		public Account(String username, String password) {
+			super();
+			this.username = username;
+			this.password = password;
+		}
+
 		public void setUsername(String username){
 			this.username=username;
 		}

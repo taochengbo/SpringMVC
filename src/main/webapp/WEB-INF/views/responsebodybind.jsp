@@ -20,6 +20,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<p align="center">密码：<input type="password" name="password" /></p>   
 		<p align="center"><input type="submit" id="submit1" value="登录1" /></p>  
 		<p align="center"><input type="submit" id="submit2" value="登录2" /></p> 
+		<p align="center"><input type="submit" id="submit3" value="登录3" /></p> 
 	</fieldset>
 	
 	<script type="text/javascript">
@@ -31,7 +32,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	                alert(params);
 					$.ajax({
 						type: "POST",
-						url:  '<%=path%>/databind/responsebodybind',
+						url:  '<%=path%>/response/responsebodybind',
 						dataType: "json",
 						data: params,
 						success: function(data){
@@ -45,12 +46,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                  $.ajax({
                      type: "POST",
                      /* contentType : 'application/x-www-form-urlencoded',*/
-                     url:  '<%=path%>/databind/responsebodybind',
-                     dataType: "json",
+                     url:  '<%=path%>/response/responsebodybind',
+                     dataType: "xml",
                      data: {username:$("#login :input[name=username]").val(),
                     	 password:$("#login :input[name=password]").val()},
                      success: function(data){
-                          alert('username : '+data.username+'\npassword : '+data.password);
+                    	  $(data).find("Account").each(function(i){
+                    		  alert('username : '+$(this).find("username").text()+'\npassword : '+ $(this).find("password").text());
+                    	  });
+                          
                      }
                  }); 
             });
@@ -59,7 +63,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                  $.ajax({
                      type: "POST",
                      /* contentType : 'application/x-www-form-urlencoded',*/
-                     url:  '<%=path%>/databind/responsebodybind2',
+                     url:  '<%=path%>/response/responsebodybind2',
                      dataType: "json",
                      data: {username:$("#login :input[name=username]").val(),
                     	 password:$("#login :input[name=password]").val()},
@@ -68,6 +72,22 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                      }
                  }); 
             });
+			$("#submit3").click(function(){
+				$.ajax({
+		             type: "get",
+		             async: false,
+		             url:  '<%=path%>/response/responsebodybind3',
+		             dataType: "jsonp",
+		             jsonp: "callback",//传递给请求处理程序或页面的，用以获得jsonp回调函数名的参数名(一般默认为:callback)
+		             jsonpCallback:"callback",//自定义的jsonp回调函数名称，默认为jQuery自动生成的随机函数名
+		             success: function(data){
+		            	 alert('username : '+data.username+'\npassword : '+data.password);
+		             },
+		             error: function(){
+		                 alert('fail');
+		             }
+		         });
+           });
 	    });
 	</script> 
 </body>

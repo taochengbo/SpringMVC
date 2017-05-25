@@ -11,8 +11,6 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 @ControllerAdvice
 public class ExceptionAdvice {
 	
-	public static final String DEFAULT_ERROR_VIEW = "error";
-
 	@ExceptionHandler({ ArrayIndexOutOfBoundsException.class })
 	@ResponseBody
 	public String handleArrayIndexOutOfBoundsException(Exception e) {
