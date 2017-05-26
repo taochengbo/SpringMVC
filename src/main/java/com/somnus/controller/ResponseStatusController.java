@@ -18,7 +18,7 @@ public class ResponseStatusController {
 	@ResponseBody
 	public String status(@PathVariable(value = "id") Integer id){
 		if(id % 2 != 0){
-			throw new HttpStatusException();
+			throw new HttpStatusException("id不能为奇数");
 		}
 		return id.toString();
 	}
@@ -32,9 +32,7 @@ public class ResponseStatusController {
 	@ResponseStatus(value=HttpStatus.BAD_GATEWAY)
 	@ResponseBody
 	public String status2(@PathVariable(value = "id") Integer id){
-		if(id % 2 != 0){
-			throw new HttpStatusException();
-		}
+		System.out.println(10 / id);
 		return id.toString();
 	}
 

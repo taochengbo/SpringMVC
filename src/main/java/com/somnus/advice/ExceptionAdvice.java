@@ -42,7 +42,7 @@ public class ExceptionAdvice {
 		mav.addObject("url", request.getRequestURL());
 		mav.setViewName(DEFAULT_ERROR_VIEW);
 		return mav;*/
-		return "testArrayIndexOutOfBoundsException";
+		return e.getMessage();
 	}
 
 }
