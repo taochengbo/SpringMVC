@@ -3,12 +3,14 @@ package com.somnus.controller;
 import java.util.Arrays;
 import java.util.List;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.ResponseStatus;
 
 @Controller
 @RequestMapping(value = "exception")
@@ -25,6 +27,12 @@ public class ExceptionHandlerController {
 	public String handleArithmeticException(Exception e) {
 		e.printStackTrace();
 		return "testArithmeticException";
+	}
+	
+	@ExceptionHandler({ NullPointerException.class })
+	@ResponseStatus(value=HttpStatus.NOT_FOUND)
+	public void handleNullPointerException(Exception e) {
+		e.printStackTrace();
 	}
 
 	/*@ExceptionHandler({ RuntimeException.class })
@@ -57,5 +65,12 @@ public class ExceptionHandlerController {
 	public String testExceptionHandle2(@PathVariable(value = "id") Integer id) {
 		List<String> list = Arrays.asList(new String[]{"a","b","c","d"});
 		return list.get(id-1);
+	}
+	
+	@RequestMapping(value = "e3/{id}", method = { RequestMethod.GET })
+	@ResponseBody
+	public String testExceptionHandle3(@PathVariable(value = "id") Integer id) {
+		List<String> list = 4 % id == 0 ? null : Arrays.asList(new String[]{"a","b","c","d"});
+		return list.get(id);
 	}
 }
