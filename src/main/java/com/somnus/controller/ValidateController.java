@@ -7,9 +7,14 @@ import org.hibernate.validator.constraints.NotEmpty;
 import org.hibernate.validator.constraints.Range;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 @RequestMapping(value = "validate")
@@ -25,52 +30,87 @@ public class ValidateController {
 	}
 	
 	/**
-	 * 这里面有个细节要注意，一旦你准备使用model校验，写上了@Valid，那就意味着，model后面必须加上一个参数BindingResult
-	 * 如果不加的话，你调用此方法，必须把model的属性全部传过来，少一个都400，妈蛋，这是不是bug啊
-	 * 我干嘛非要你SpringMVC提供的校验，我用aop去校验参数，又不需要你的BindingResult，
-	 * 干嘛非逼着我加上
+	 * @Validated和@Valid 在这里都可以
+	 * @param validateModel
+	 * @return
 	 */
 	@RequestMapping(value="test", method = {RequestMethod.POST})
-	public String test(@Valid @ModelAttribute("contentModel") ValidateModel validateModel
-			/*,BindingResult result*/){
+	@ResponseBody
+	public ValidateModel test(@Valid @ModelAttribute("contentModel") ValidateModel model, BindingResult result){
 		
-		//如果有验证错误 返回到form页面
-        /*if(result.hasErrors()){
-        	return test(model);
-        }*/
-    	return "validatesuccess"; 	
+		if(result.hasErrors()){
+			for(int i = 0;i<result.getFieldErrorCount();i++){
+				FieldError error = result.getFieldErrors().get(i);
+				System.out.println(error.getField() + "-->" + error.getDefaultMessage());
+			}
+        }
+		
+    	return model;
 	}
 	
-	public static class ValidateModel{
+	/**
+	 * 不加BindingResult会报异常如下：
+	 * org.springframework.web.bind.MethodArgumentNotValidException: Validation failed for argument at index 0 in method: 
+	 * public com.somnus.controller.ValidateModel 
+	 * com.somnus.controller.ValidateController.test2(com.somnus.controller.ValidateModel), 
+	 * with 2 error(s): [Field error in object 'validateModel' on field 'email': rejected value [null]; 
+	 * codes [NotEmpty.validateModel.email,NotEmpty.email,NotEmpty.java.lang.String,NotEmpty]; 
+	 * arguments [org.springframework.context.support.DefaultMessageSourceResolvable: 
+	 * codes [validateModel.email,email]; arguments []; default message [email]]; 
+	 * default message [电子邮件不能为空。]] [Field error in object 'validateModel' on field 'age': rejected value [2222]; 
+	 * codes [Range.validateModel.age,Range.age,Range.java.lang.String,Range]; 
+	 * arguments [org.springframework.context.support.DefaultMessageSourceResolvable: 
+	 * codes [validateModel.age,age]; arguments []; default message [age],150,0]; default message [年龄超出范围。]] 
+	 * 
+	 * at org.springframework.web.servlet.mvc.method.annotation.RequestResponseBodyMethodProcessor.resolveArgument(RequestResponseBodyMethodProcessor.java:135)
+	 * 
+	 * @Validated和@Valid 在这里都可以
+	 */
+	@RequestMapping(value="test2", method = {RequestMethod.POST})
+	@ResponseBody
+	public ValidateModel test2(@Validated @RequestBody ValidateModel model, BindingResult result){
 		
-		@NotEmpty(message="{name.not.empty}")
-		private String name;
-		@Range(min=0, max=150,message="{age.not.inrange}")
-		private String age;
-		@NotEmpty(message="{email.not.empty}")
-		@Email(message="{email.not.correct}")
-		private String email;
+		if(result.hasErrors()){
+			for(int i = 0;i<result.getFieldErrorCount();i++){
+				FieldError error = result.getFieldErrors().get(i);
+				System.out.println(error.getField() + "-->" + error.getDefaultMessage());
+			}
+        }
 		
-		public void setName(String name){
-			this.name=name;
-		}
-		public void setAge(String age){
-			this.age=age;
-		}
-		public void setEmail(String email){
-			this.email=email;
-		}
-		
-		public String getName(){
-			return this.name;
-		}
-		public String getAge(){
-			return this.age;
-		}
-		public String getEmail(){
-			return this.email;
-		}
-		
+    	return model;
+	}
+	
+}
+class ValidateModel{
+	
+	@NotEmpty(message="{name.not.empty}")
+	private String name;
+	
+	@Range(min=0, max=150,message="{age.not.inrange}")
+	private String age;
+	
+	@NotEmpty(message="{email.not.empty}")
+	@Email(message="{email.not.correct}")
+	private String email;
+	
+	public void setName(String name){
+		this.name=name;
+	}
+	public void setAge(String age){
+		this.age=age;
+	}
+	public void setEmail(String email){
+		this.email=email;
+	}
+	
+	public String getName(){
+		return this.name;
+	}
+	public String getAge(){
+		return this.age;
+	}
+	public String getEmail(){
+		return this.email;
 	}
 	
 }
