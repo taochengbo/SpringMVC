@@ -36,11 +36,19 @@ public class ResponseBodyBindController {
         return account;
     }
 	
-	@RequestMapping(value="responsebodybind3", method = {RequestMethod.GET})
-    @ResponseBody
+	@RequestMapping(value="responsebodybind3"/*, produces="application/json"*/)
+    @ResponseBody/* 默认 application/json*/
     public Account responsebodybind(){
 	    Account account = new Account("admin", "123456");
 	    System.out.println("responsebodybind3:" + account);
+        return account;
+    }
+	
+	@RequestMapping(value="responsebodybind4", produces="application/xml")
+    @ResponseBody/* 也需要依赖对应的jar包*/
+    public Account responsebodybind4(){
+	    Account account = new Account("admin", "123456");
+	    System.out.println("responsebodybind4:" + account);
         return account;
     }
 	
@@ -65,7 +73,7 @@ public class ResponseBodyBindController {
 	
 	
 	
-public static class Account{
+public class Account{
 		
 		private String username;
 		

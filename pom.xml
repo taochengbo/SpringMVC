@@ -93,11 +93,11 @@
 			<version>${jackson.version}</version>
 		</dependency>
 		
-		<!-- <dependency>
+		<dependency><!-- jackson xml -->
             <groupId>com.fasterxml.jackson.dataformat</groupId>
             <artifactId>jackson-dataformat-xml</artifactId>
             <version>${jackson.version}</version>
-        </dependency> -->
+        </dependency>
 
 		<!-- bean validator -->
 		<dependency>
