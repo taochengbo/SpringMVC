@@ -75,8 +75,10 @@
                             <!-- 启用annotation -->  
                             <property name="autodetectAnnotations" value="true" />
                         </bean>
-                    </property> 
-                </bean> 
+                    </property>
+                </bean>
+                <bean class="com.somnus.support.view.XlsView"/>
+                <bean class="com.somnus.support.view.XlsxView"/>
 	        </mvc:default-views>
 	    </mvc:content-negotiation>
 	    <mvc:jsp prefix="/WEB-INF/views/" suffix=".jsp" />

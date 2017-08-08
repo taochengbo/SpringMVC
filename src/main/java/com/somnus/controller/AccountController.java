@@ -1,12 +1,17 @@
 package com.somnus.controller;
 
 import java.io.PrintWriter;
+import java.util.Arrays;
+import java.util.Date;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -53,6 +58,26 @@ public class AccountController {
 	    mv.setViewName("viewResolver");
         return mv;
     }
+    @RequestMapping(value="viewResolver2", method = {RequestMethod.GET})
+    public String viewResolver2(ModelMap model){
+	    Account account = new Account();
+	    account.setUsername(WebUtil.getRequest().getParameter("username"));
+	    account.setPassword(WebUtil.getRequest().getParameter("password"));
+	    model.addAttribute(account);
+        return "viewResolver";
+    }
+    
+
+    @RequestMapping(value="download",method = RequestMethod.GET)
+    public String getDocuments(Model model) {
+    	List<Course> documents = Arrays.asList(
+                new Course(1, "Spring MVC Xls View", new Date()),
+                new Course(2, "Spring MVC Xlsx View", new Date()),
+                new Course(3, "Spring MVC XlsxStreaming View", new Date())
+        );
+        model.addAttribute("courses", documents);
+        return "index";
+    }
     
     @RequestMapping(value="map", method = {RequestMethod.GET})
     public ModelAndView map(HttpServletRequest request){
@@ -73,6 +98,12 @@ public class AccountController {
 		
 		public Account(){}
 		
+		public Account(String username, String password) {
+			super();
+			this.username = username;
+			this.password = password;
+		}
+
 		public void setUsername(String username){
 			this.username=username;
 		}
@@ -93,4 +124,32 @@ public class AccountController {
 		}
 		
 	}
+    
+    public static class Course {
+
+        private Integer id;
+        private String name;
+        private Date date;
+
+        public Course() {
+        }
+
+        public Course(Integer id, String name, Date date) {
+            this.id = id;
+            this.name = name;
+            this.date = date;
+        }
+
+        public Integer getId() {
+            return id;
+        }
+
+        public String getName() {
+            return name;
+        }
+
+        public Date getDate() {
+            return date;
+        }
+    }
 }

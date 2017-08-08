@@ -25,6 +25,7 @@
 		<commons.fileupload.version>1.3.2</commons.fileupload.version>
 		<!-- xml -->
 		<xstream.version>1.4.7</xstream.version>
+		<apache.poi.version>3.15</apache.poi.version>
 	</properties>
 
 	<!-- 指定Maven仓库 -->
@@ -111,6 +112,12 @@
 			<artifactId>fastjson</artifactId>
 			<version>${alibaba.fastjson.version}</version>
 		</dependency>
+		
+		<dependency>
+            <groupId>org.apache.poi</groupId>
+            <artifactId>poi-ooxml</artifactId>
+            <version>${apache.poi.version}</version>
+        </dependency>
 	</dependencies>
 
 	<build>
