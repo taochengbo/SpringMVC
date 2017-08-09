@@ -28,7 +28,7 @@ public class ResponseBodyBindController {
 	
 	@RequestMapping(value="responsebodybind2", method = {RequestMethod.POST})
     @ResponseBody
-    public Account responsebodybind(String username,String password){
+    public Account responsebodybind2(String username,String password){
 	    Account account = new Account();
 	    account.setUsername(username);
 	    account.setPassword(password);
@@ -36,19 +36,19 @@ public class ResponseBodyBindController {
         return account;
     }
 	
-	@RequestMapping(value="responsebodybind3"/*, produces="application/json"*/)
-    @ResponseBody/* 默认 application/json*/
-    public Account responsebodybind(){
+	@RequestMapping(value="returnjson"/*, produces="application/json"*/)
+    @ResponseBody
+    public Account returnjson(){
 	    Account account = new Account("admin", "123456");
-	    System.out.println("responsebodybind3:" + account);
+	    System.out.println("returnjson:" + account);
         return account;
     }
 	
-	@RequestMapping(value="responsebodybind4", produces="application/xml")
-    @ResponseBody/* 也需要依赖对应的jar包*/
-    public Account responsebodybind4(){
+	@RequestMapping(value="returnxml"/*, produces="application/json"*/)
+    @ResponseBody
+    public Account returnxml(){
 	    Account account = new Account("admin", "123456");
-	    System.out.println("responsebodybind4:" + account);
+	    System.out.println("returnxml:" + account);
         return account;
     }
 	
