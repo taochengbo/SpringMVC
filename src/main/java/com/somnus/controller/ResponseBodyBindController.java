@@ -36,7 +36,7 @@ public class ResponseBodyBindController {
         return account;
     }
 	
-	@RequestMapping(value="returnjson"/*, produces="application/json"*/)
+	@RequestMapping(value="returnjson", headers="Accept=application/json", produces="application/json")
     @ResponseBody
     public Account returnjson(){
 	    Account account = new Account("admin", "123456");
@@ -44,7 +44,7 @@ public class ResponseBodyBindController {
         return account;
     }
 	
-	@RequestMapping(value="returnxml"/*, produces="application/json"*/)
+	@RequestMapping(value="returnxml", headers="Accept=application/xml", produces="application/json")
     @ResponseBody
     public Account returnxml(){
 	    Account account = new Account("admin", "123456");

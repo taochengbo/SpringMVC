@@ -95,11 +95,11 @@
 		</dependency>
 		
 		<!-- 导入了这个包 @ResponseBody 将会始终produces="application/xml" -->
-		<!-- <dependency>
+		<dependency>
             <groupId>com.fasterxml.jackson.dataformat</groupId>
             <artifactId>jackson-dataformat-xml</artifactId>
             <version>${jackson.version}</version>
-        </dependency> -->
+        </dependency>
 
 		<!-- bean validator -->
 		<dependency>
