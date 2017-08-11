@@ -24,9 +24,9 @@ public class ExceptionHandlerController {
 	 */
 	@ExceptionHandler({ ArithmeticException.class })
 	@ResponseBody
-	public String handleArithmeticException(Exception e) {
+	public List<Integer> handleArithmeticException(Exception e) {
 		e.printStackTrace();
-		return "testArithmeticException";
+		return Arrays.asList(new Integer[]{1,2,3,4});
 	}
 	
 	@ExceptionHandler({ NullPointerException.class })
@@ -48,11 +48,12 @@ public class ExceptionHandlerController {
 	 * @param id
 	 * @return
 	 */
-	@RequestMapping(value = "e/{id}", method = { RequestMethod.GET })
+	@RequestMapping(value = "e/{id}", method = { RequestMethod.GET }, headers="Accept=application/json")
 	@ResponseBody
-	public String testExceptionHandle(@PathVariable(value = "id") Integer id) {
+	public List<String> testExceptionHandle(@PathVariable(value = "id") Integer id) {
 		System.out.println(10 / id);
-		return id.toString();
+		
+		return Arrays.asList(new String[]{"a","b","c","d"});
 	}
 	
 	/**
