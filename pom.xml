@@ -10,9 +10,9 @@
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<!-- servlet & jsp & jstl -->
-		<servlet.version>3.1.0</servlet.version>
-		<jsp.version>2.2</jsp.version>
-		<jstl.version>1.2</jstl.version>
+        <servlet.version>3.1.0</servlet.version>
+        <jsp.version>2.3.1</jsp.version>
+        <jstl.version>1.2</jstl.version>
 		<!-- spring -->
 		<spring.version>4.3.5.RELEASE</spring.version>
 		<!-- json -->
@@ -45,23 +45,23 @@
 
 	<dependencies>
 		<!-- servlet & jsp -->
-		<dependency>  
+        <dependency>  
             <groupId>javax.servlet</groupId>  
             <artifactId>javax.servlet-api</artifactId>  
             <version>${servlet.version}</version>  
             <scope>provided</scope>  
-        </dependency> 
-		<dependency>
-			<groupId>javax.servlet</groupId>
-			<artifactId>jstl</artifactId>
-			<version>${jstl.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>javax.servlet.jsp</groupId>
-			<artifactId>jsp-api</artifactId>
-			<version>${jsp.version}</version>
-			<scope>provided</scope>
-		</dependency>
+        </dependency>
+        <dependency>
+            <groupId>javax.servlet.jsp</groupId>
+            <artifactId>javax.servlet.jsp-api</artifactId>
+            <version>${jsp.version}</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>jstl</artifactId>
+            <version>${jstl.version}</version>
+        </dependency>
 		<!-- 加入springmvc依赖包 -->
 		<dependency>
 			<groupId>org.springframework</groupId>
