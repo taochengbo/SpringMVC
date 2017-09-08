@@ -8,7 +8,7 @@
 		http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd">
         
 	<!-- 启动注解驱动的Spring MVC功能，注册请求url和注解POJO类方法的映射--><!-- <mvc:annotation-driven /> -->
-    <mvc:annotation-driven validator="validator" conversion-service="conversion-service" >
+    <mvc:annotation-driven validator="validator" conversion-service="conversion-service" content-negotiation-manager="contentNegotiationManager">
         <mvc:message-converters>
 	        <bean class="org.springframework.http.converter.StringHttpMessageConverter">
 	            <property name="supportedMediaTypes">
@@ -47,6 +47,23 @@
 	<!-- 开启controller注解支持 -->
     <!-- use-default-filters="false" 只扫描指定的注解 -->
     <context:component-scan base-package="com.somnus"/>
+    
+    <!-- Total customization - see below for explanation. -->
+	<bean id="contentNegotiationManager" class="org.springframework.web.accept.ContentNegotiationManagerFactoryBean">
+	    <property name="favorPathExtension" value="true" />
+	    <property name="favorParameter" value="false" />
+	    <property name="parameterName" value="format" />
+	    <property name="ignoreAcceptHeader" value="false"/>
+	    <property name="useJaf" value="false"/>
+	    <property name="defaultContentType" value="text/html" />
+	
+	    <property name="mediaTypes">
+	        <map>
+	            <entry key="json" value="application/json" />
+	            <entry key="xml" value="application/xml" />
+	       </map>
+	    </property>
+	</bean>
 	
     <!-- 视图解析器 -->
     <!-- <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
@@ -82,7 +99,12 @@
 	        </mvc:default-views>
 	    </mvc:content-negotiation>
 	    <mvc:jsp prefix="/WEB-INF/views/" suffix=".jsp" />
+        <mvc:freemarker prefix="" suffix=".ftl" />
     </mvc:view-resolvers>
+    
+    <mvc:freemarker-configurer>
+        <mvc:template-loader-path location="/WEB-INF/freemarker/" />
+    </mvc:freemarker-configurer>
     
     <!-- 支持上传文件 -->  
     <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">  

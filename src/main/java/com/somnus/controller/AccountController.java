@@ -11,7 +11,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -59,7 +58,7 @@ public class AccountController {
         return mv;
     }
     @RequestMapping(value="viewResolver2", method = {RequestMethod.GET})
-    public String viewResolver2(ModelMap model){
+    public String viewResolver2(Model model){
 	    Account account = new Account();
 	    account.setUsername(WebUtil.getRequest().getParameter("username"));
 	    account.setPassword(WebUtil.getRequest().getParameter("password"));
